@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+}
+app-root {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  background-color: #fcfcfc;
+}
+.cont {
+  display: flex;
+  flex-flow: column;
+}
+.row {
+  display: flex;
+  flex-flow: row wrap;
+}
+.center {
+  justify-content: center;
+}
+.space-between {
+  justify-content: space-between;
+}
+.space-around {
+  justify-content: space-around;
+}
