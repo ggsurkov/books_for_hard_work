@@ -5,17 +5,25 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MaterialDesignModule} from '../core/material-design.module';
-
+import { BookPageComponent } from './client-side/book-page/book-page.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { MainPageComponent } from './client-side/main-page/main-page.component';
+import { BookCollectionPageComponent } from './client-side/book-collection-page/book-collection-page.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BookPageComponent,
+    MainPageComponent,
+    BookCollectionPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     MaterialDesignModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

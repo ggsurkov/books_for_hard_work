@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {CollectionModel, createEmptyCollections} from '../models/collection.model';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,7 @@ import {CollectionModel, createEmptyCollections} from '../models/collection.mode
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  collections: CollectionModel[] = createEmptyCollections();
+
 
   constructor(public http: HttpClient) {
 

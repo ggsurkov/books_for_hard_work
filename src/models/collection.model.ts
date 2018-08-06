@@ -53,3 +53,14 @@ export function createEmptyCollections() {
     },
   ];
 }
+
+export function createCollectionWithBooks () {
+  return {
+    id: 6,
+    title: 'Выход из зоны комфорта',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam architecto, assumenda, blanditiis consequatur eum ex facilis hic illo laborum nihil odit officiis possimus quidem rem repellendus saepe soluta, ut!',
+    img: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
+    vote: 36,
+    books: []
+  }
+}
