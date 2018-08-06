@@ -9,6 +9,7 @@ import { BookPageComponent } from './client-side/book-page/book-page.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { MainPageComponent } from './client-side/main-page/main-page.component';
 import { BookCollectionPageComponent } from './client-side/book-collection-page/book-collection-page.component';
+import {IconSvgRegistryService} from "../core/helpers/icon.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,12 @@ import { BookCollectionPageComponent } from './client-side/book-collection-page/
     AppRoutingModule,
 
   ],
-  providers: [],
+  providers: [IconSvgRegistryService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(private iconSvgRegistryService: IconSvgRegistryService) {
+    iconSvgRegistryService.registerIcons();
+  }
+}

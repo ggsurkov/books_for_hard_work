@@ -11,6 +11,7 @@
 
 <div class="collection-block row space-between">
   <mat-card class="collection-block__card" *ngFor="let collection of collections">
+    <div (click)="openCollection(collection.id)">
     <mat-card-header>
       <mat-card-title>{{collection.title}}</mat-card-title>
     </mat-card-header>
@@ -24,5 +25,6 @@
       <button mat-button>LIKE</button>
       {{collection.vote}}
     </mat-card-actions>
+    </div>
   </mat-card>
 </div>

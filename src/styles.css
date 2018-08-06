@@ -1,6 +1,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "core/core-positioning-styles.css";
 /* PUT ALL COMPONENTS */
+
 app-main-page, app-book-page, app-book-collection-page {
   font-family: 'Roboto', sans-serif;
   display: flex;

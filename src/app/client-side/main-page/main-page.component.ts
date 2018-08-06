@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CollectionModel, createEmptyCollections} from "../../../models/collection.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-main-page',
@@ -8,9 +9,12 @@ import {CollectionModel, createEmptyCollections} from "../../../models/collectio
 })
 export class MainPageComponent implements OnInit {
   collections: CollectionModel[] = createEmptyCollections();
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  openCollection(collectionId: Number) {
+    this.router.navigate([`book-collection/${collectionId}`])
+  }
 }

@@ -1,4 +1,4 @@
-import {BookModel} from './book.model';
+import {BookModel, createEmptyBook} from './book.model'
 
 export interface CollectionModel {
   id: number;
@@ -51,10 +51,10 @@ export function createEmptyCollections() {
       vote: 36,
       books: []
     },
-  ];
+  ]
 }
 
-export function createCollectionWithBooks () {
+export function createCollectionWithBooks() {
   return {
     id: 6,
     title: 'Выход из зоны комфорта',
