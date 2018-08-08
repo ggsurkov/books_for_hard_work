@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {BookModel, createEmptyBook} from "../../../models/book.model";
 import {createDefaultsRefInfoButton, RefInfoButtonModel} from "../../../models/ref-info-button.model";
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-book-page',
   templateUrl: './book-page.component.html',
@@ -15,7 +16,8 @@ export class BookPageComponent implements OnInit {
   refBtn4: RefInfoButtonModel = createDefaultsRefInfoButton();
   refBtn5: RefInfoButtonModel = createDefaultsRefInfoButton();
   safeURL: SafeResourceUrl;
-  constructor(private _sanitizer: DomSanitizer) { }
+  currentUrl: string;
+  constructor(private _sanitizer: DomSanitizer, private router: Router) { }
 
   ngOnInit() {
     this.book.refShopButtons.push(this.refBtn1);

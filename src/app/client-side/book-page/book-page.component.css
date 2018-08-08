@@ -37,3 +37,7 @@ mat-list-item:hover {
 .book-block__card-youtube-ref {
   width: 45%
 }
+.breadcrumbs {
+  width: 80%;
+  color: #9b9b9b;
+}
