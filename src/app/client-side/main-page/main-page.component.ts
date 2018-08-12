@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CollectionModel, createEmptyCollections} from "../../../models/collection.model";
+import {CollectionModel, createExampleCollections} from "../../models/collection.model";
 import {Router} from "@angular/router";
 
 @Component({
@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  collections: CollectionModel[] = createEmptyCollections();
+  collections: CollectionModel[] = createExampleCollections();
   constructor(private router: Router) { }
 
   ngOnInit() {

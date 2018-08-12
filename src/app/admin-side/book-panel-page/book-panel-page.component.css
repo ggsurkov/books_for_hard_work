@@ -1,0 +1,27 @@
+.tab-and-table-block, h1 {
+  width: 80%
+}
+.tab-and-table-block__tabs {
+  width: 40%
+}
+.tab-and-table-block__edit {
+  width: 40%
+}
+mat-table {
+  background-color: #fcfcfc;
+  width: 50%;
+  padding: 0 10px;
+}
+.title-cell {
+  display: flex;
+}
+.author-cell {
+  display: flex;
+  max-width: 20%;
+}
+mat-row {
+  cursor: pointer;
+}
+mat-row:hover {
+  background-color: #ffffff;
+}

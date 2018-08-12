@@ -1,0 +1,24 @@
+<h1 class="row">Добавить подборку</h1>
+
+<div class="row tab-and-table-block">
+  <mat-tab-group class="tab-and-table-block__tabs">
+    <mat-tab class="tab-and-table-block__create" label="Новая">
+      <app-create-form-book></app-create-form-book>
+    </mat-tab>
+    <mat-tab class="tab-and-table-block__edit" label="Выбранная">
+      <app-update-form-book></app-update-form-book>
+    </mat-tab>
+  </mat-tab-group>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container cdkColumnDef="title">
+      <mat-header-cell *cdkHeaderCellDef class="title-cell">Название</mat-header-cell>
+      <mat-cell *cdkCellDef="let book" class="title-cell" > {{book.title}} </mat-cell>
+    </ng-container>
+    <ng-container cdkColumnDef="author">
+      <mat-header-cell *cdkHeaderCellDef class="author-cell">Автор</mat-header-cell>
+      <mat-cell  *cdkCellDef="let book" class="author-cell"> {{book.author}} </mat-cell>
+    </ng-container>
+    <mat-header-cell *cdkHeaderRowDef="['title', 'author']"></mat-header-cell>
+    <mat-row (click)="selectBookForEdit(book.guid)"  *cdkRowDef="let book; columns: ['title', 'author']"></mat-row>
+  </mat-table>
+</div>

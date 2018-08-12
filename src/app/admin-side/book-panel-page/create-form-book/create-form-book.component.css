@@ -1,0 +1,9 @@
+form {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  margin: 20px 0
+}
+.download-button {
+  width: 70%
+}

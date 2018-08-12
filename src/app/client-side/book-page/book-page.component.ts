@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {BookModel, createEmptyBook} from "../../../models/book.model";
-import {createDefaultsRefInfoButton, RefInfoButtonModel} from "../../../models/ref-info-button.model";
+import {BookModel, createExampleBook} from "../../models/book.model";
+import {createDefaultsRefInfoButton, RefInfoButtonModel} from "../../models/ref-info-button.model";
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import {Router} from "@angular/router";
 @Component({
@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./book-page.component.css']
 })
 export class BookPageComponent implements OnInit {
-  book: BookModel = createEmptyBook();
+  book: BookModel = createExampleBook();
   refBtn1: RefInfoButtonModel = createDefaultsRefInfoButton();
   refBtn2: RefInfoButtonModel = createDefaultsRefInfoButton();
   refBtn3: RefInfoButtonModel = createDefaultsRefInfoButton();

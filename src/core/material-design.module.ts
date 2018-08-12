@@ -15,10 +15,11 @@ import {
   MatMenuModule,
   MatSelectModule,
   MatSlideToggleModule,
-  MatSnackBarModule,
+  MatSnackBarModule, MatTableModule,
   MatTabsModule,
   MatToolbarModule
 } from "@angular/material";
+import {CdkTableModule} from "@angular/cdk/table";
 
 @NgModule({
   imports: [
@@ -39,7 +40,9 @@ import {
     MatSelectModule,
     MatTabsModule,
     MatAutocompleteModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTableModule,
+    CdkTableModule
   ],
   exports: [
     MatButtonModule,
@@ -59,7 +62,9 @@ import {
     MatTabsModule,
     MatMenuModule,
     MatAutocompleteModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTableModule,
+    CdkTableModule
   ],
   declarations: []
 

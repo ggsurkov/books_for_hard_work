@@ -1,0 +1,43 @@
+<form  (submit)="saveBook()" #menuForm="ngForm" autocomplete="off">
+  <mat-form-field>
+    <input required matInput type="text" placeholder="Название" [(ngModel)]="newBook.title">
+  </mat-form-field>
+  <mat-form-field>
+    <input required matInput type="text" placeholder="Автор" [ngModel]="newBook.author">
+  </mat-form-field>
+    <button class="download-button" mat-button>Загрузить обложку
+      <input type="file" placeholder="Обложка" >
+    </button>
+  <mat-form-field>
+    <input required matInput type="text" placeholder="Короткое описание" [ngModel]="newBook.shortDescription">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea required matInput type="text" placeholder="Полное описание" [ngModel]="newBook.description"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select type="text" placeholder="Выбрать коллекцию"></mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Ссылка на литрес">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Ссылка на альпину">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Ссылка на лабиринт">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Ссылка на республику">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Ссылка на буквоед">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Ссылка на ютуб отзыв" [ngModel]="newBook.youtubeReviewVideoCodes">
+  </mat-form-field>
+
+
+  <div class="action-buttons">
+    <button mat-raised-button color="primary" type="submit">Добавить книгу</button>
+  </div>
+</form>

@@ -1,0 +1,21 @@
+<form  (submit)="updateCollection()" #menuForm="ngForm" autocomplete="off">
+  <mat-form-field>
+    <input required matInput type="text" placeholder="Название" [(ngModel)]="editedCollection.title">
+  </mat-form-field>
+  <button class="download-button" mat-button>Загрузить обложку
+    <input type="file" placeholder="Обложка" >
+  </button>
+  <mat-form-field>
+    <textarea required matInput type="text" placeholder="Полное описание" [ngModel]="editedCollection.description"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select type="text" placeholder="Выбрать книгу"></mat-select>
+  </mat-form-field>
+
+
+  <div class="action-buttons">
+    <button mat-raised-button color="primary" type="submit">Обновить</button>
+    <button mat-raised-button color="danger" type="button" (click)="deleteCollection()">Удалить</button>
+  </div>
+
+</form>

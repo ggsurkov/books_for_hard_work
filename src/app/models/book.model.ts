@@ -2,7 +2,7 @@ import {CollectionModel, createCollectionWithBooks} from './collection.model';
 import {createDefaultsRefInfoButton, RefInfoButtonModel} from "./ref-info-button.model";
 
 export interface BookModel {
-  guid: number;
+  guid: string;
   title: string;
   author: string;
   img: string;
@@ -14,9 +14,9 @@ export interface BookModel {
   youtubeReviewVideoCodes: string[];
 }
 
-export function createEmptyBook() {
+export function createExampleBook() {
   return {
-    guid: 1,
+    guid: "123123123",
     title: "Генри Форд. Моя жизнь. Мои достижения",
     author: "Генри Форд",
     img: "https://simg.sputnik.ru/?key=68d4051531f8f5fb19b1789ac3c109b669d51789",
@@ -30,4 +30,20 @@ export function createEmptyBook() {
       "SxdxzHjJ-j0"
     ],
   }
+}
+
+export function createEmptyBook() {
+  return {
+    guid: "empty-guid",
+    title: null,
+    author: null,
+    img: null,
+    shortDescription: null,
+    description: null,
+    vote: null,
+    bookCollection: [],
+    refShopButtons: [],
+    youtubeReviewVideoCodes: []
+  }
+
 }

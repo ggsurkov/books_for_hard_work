@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CollectionModel, createCollectionWithBooks} from "../../../models/collection.model";
-import {BookModel, createEmptyBook} from "../../../models/book.model";
+import {CollectionModel, createCollectionWithBooks} from "../../models/collection.model";
+import {BookModel, createExampleBook} from "../../models/book.model";
 import {Router} from "@angular/router";
 
 @Component({
@@ -10,8 +10,8 @@ import {Router} from "@angular/router";
 })
 export class BookCollectionPageComponent implements OnInit {
   collection: CollectionModel = createCollectionWithBooks();
-  book1: BookModel = createEmptyBook();
-  book2: BookModel = createEmptyBook();
+  book1: BookModel = createExampleBook();
+  book2: BookModel = createExampleBook();
   constructor(private router: Router) { }
 
   ngOnInit() {
