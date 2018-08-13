@@ -7,6 +7,7 @@ import {BookCollectionPageComponent} from "./client-side/book-collection-page/bo
 import {AdminPanelPageComponent} from "./admin-side/admin-panel-page/admin-panel-page.component";
 import {BookPanelPageComponent} from "./admin-side/book-panel-page/book-panel-page.component";
 import {CollectionPanelPageComponent} from "./admin-side/collection-panel-page/collection-panel-page.component";
+import {AuthorPageComponent} from "./client-side/author-page/author-page.component";
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'admin-panel/book-panel', component: BookPanelPageComponent},
   {path: 'admin-panel/collection-panel', component: CollectionPanelPageComponent},
   {path: 'book/:id', component: BookPageComponent},
-  {path: 'book-collection/:id', component: BookCollectionPageComponent}
+  {path: 'book-collection/:id', component: BookCollectionPageComponent},
+  {path: 'author/:id', component: AuthorPageComponent}
 ];
 
 @NgModule({

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const RefInfoButtonModel = require('ref-info-button-model');
+const CollectionModel = require('collection-model');
 
 const bookSchema = mongoose.Schema({
   guid: { type: String, required: true },
@@ -8,9 +10,9 @@ const bookSchema = mongoose.Schema({
   shortDescription: { type: String, required: true },
   description: { type: String, required: true },
   vote: { type: Number, required: false },
-  // youtubeReviewVideoCodes: Array[String],
-  // bookCollection: CollectionModel[],
-  // refShopButtons: RefInfoButtonModel[],
+  youtubeReviewVideoCodes: [String],
+  bookCollection: [CollectionModel],
+  refShopButtons: [RefInfoButtonModel],
 
 });
 

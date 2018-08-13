@@ -18,6 +18,7 @@ import {CdkColumnDef} from "@angular/cdk/table";
 import { UpdateFormBookComponent } from './admin-side/book-panel-page/update-form-book/update-form-book.component';
 import { CreateCollectionFormComponent } from './admin-side/collection-panel-page/create-collection-form/create-collection-form.component';
 import { UpdateCollectionFormComponent } from './admin-side/collection-panel-page/update-collection-form/update-collection-form.component';
+import { AuthorPageComponent } from './client-side/author-page/author-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { UpdateCollectionFormComponent } from './admin-side/collection-panel-pag
     UpdateFormBookComponent,
     CreateCollectionFormComponent,
     UpdateCollectionFormComponent,
+    AuthorPageComponent,
   ],
   imports: [
     BrowserModule,
