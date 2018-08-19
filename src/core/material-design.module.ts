@@ -20,51 +20,34 @@ import {
   MatToolbarModule
 } from "@angular/material";
 import {CdkTableModule} from "@angular/cdk/table";
-
+const dependency = [
+  CommonModule,
+  MatButtonModule,
+  MatCheckboxModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatSnackBarModule,
+  MatCardModule,
+  MatGridListModule,
+  MatToolbarModule,
+  MatGridListModule,
+  MatListModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatIconModule,
+  MatSelectModule,
+  MatTabsModule,
+  MatAutocompleteModule,
+  MatSlideToggleModule,
+  MatTableModule,
+  CdkTableModule
+];
 @NgModule({
   imports: [
-    CommonModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSnackBarModule,
-    MatCardModule,
-    MatGridListModule,
-    MatToolbarModule,
-    MatGridListModule,
-    MatListModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatAutocompleteModule,
-    MatSlideToggleModule,
-    MatTableModule,
-    CdkTableModule
+    dependency
   ],
   exports: [
-    MatButtonModule,
-    MatCheckboxModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSnackBarModule,
-    MatCardModule,
-    MatGridListModule,
-    MatToolbarModule,
-    MatGridListModule,
-    MatListModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatMenuModule,
-    MatAutocompleteModule,
-    MatSlideToggleModule,
-    MatTableModule,
-    CdkTableModule
+    dependency
   ],
   declarations: []
 

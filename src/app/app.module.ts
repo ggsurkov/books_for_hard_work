@@ -19,6 +19,7 @@ import { UpdateFormBookComponent } from './admin-side/book-panel-page/update-for
 import { CreateCollectionFormComponent } from './admin-side/collection-panel-page/create-collection-form/create-collection-form.component';
 import { UpdateCollectionFormComponent } from './admin-side/collection-panel-page/update-collection-form/update-collection-form.component';
 import { AuthorPageComponent } from './client-side/author-page/author-page.component';
+import { MenuHeaderComponent } from './components/menu-header/menu-header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { AuthorPageComponent } from './client-side/author-page/author-page.compo
     CreateCollectionFormComponent,
     UpdateCollectionFormComponent,
     AuthorPageComponent,
+    MenuHeaderComponent,
   ],
   imports: [
     BrowserModule,

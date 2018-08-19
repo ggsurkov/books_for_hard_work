@@ -10,5 +10,6 @@ export class IconSvgRegistryService {
   registerIcons(): void {
     this.iconRegistry.addSvgIcon('close', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/baseline-close-24px.svg'));
     this.iconRegistry.addSvgIcon('done', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/baseline-done-24px.svg'));
+    this.iconRegistry.addSvgIcon('menu', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/baseline-menu-24px.svg'));
   }
 }
