@@ -6,7 +6,9 @@
       <app-create-form-book></app-create-form-book>
     </mat-tab>
     <mat-tab class="tab-and-table-block__edit" label="Выбранная">
-      <app-update-form-book></app-update-form-book>
+      <app-update-form-book
+        [selectedBook]="selectedBook"
+      ></app-update-form-book>
     </mat-tab>
   </mat-tab-group>
   <mat-table #table [dataSource]="dataSource">
@@ -15,10 +17,10 @@
       <mat-cell *cdkCellDef="let book" class="title-cell" > {{book.title}} </mat-cell>
     </ng-container>
     <ng-container cdkColumnDef="author">
-      <mat-header-cell *cdkHeaderCellDef class="author-cell">Автор</mat-header-cell>
+      <mat-header-cell *cdkHeaderCellDef class="author-cell">Кол-во книг</mat-header-cell>
       <mat-cell  *cdkCellDef="let book" class="author-cell"> {{book.author}} </mat-cell>
     </ng-container>
-    <mat-header-cell *cdkHeaderRowDef="['title', 'author']"></mat-header-cell>
+    <mat-header-row *cdkHeaderRowDef="['title', 'author']"></mat-header-row>
     <mat-row (click)="selectBookForEdit(book.guid)"  *cdkRowDef="let book; columns: ['title', 'author']"></mat-row>
   </mat-table>
 </div>

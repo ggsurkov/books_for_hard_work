@@ -7,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollectionPanelPageComponent implements OnInit {
   dataSource: any = [
-    {}
-  ]
+    {guid: "g-1", title: "Тайм Менеджмент", booksCount: 12},
+    {guid: "g-2", title: "Лидерство в бизнесе", booksCount: 8},
+  ];
   constructor() { }
 
   ngOnInit() {
   }
+  selectCollectionForEdit(guid: string): void {
 
+  }
 }

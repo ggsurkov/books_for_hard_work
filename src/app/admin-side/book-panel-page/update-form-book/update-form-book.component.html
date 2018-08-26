@@ -1,6 +1,6 @@
 <form  (submit)="updateBook()" #menuForm="ngForm" autocomplete="off" *ngIf="selectedBook">
   <mat-form-field>
-    <input required matInput type="text" placeholder="Название" [ngModel]="editedBook.title">
+    <input required matInput type="text" placeholder="Название" [ngModel]="selectedBook.title">
   </mat-form-field>
   <mat-form-field>
     <input required matInput type="text" placeholder="Автор" [ngModel]="editedBook.author">

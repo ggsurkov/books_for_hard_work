@@ -8,8 +8,12 @@ import {BookModel} from "../../../models/book.model";
   styleUrls: ['./update-form-book.component.css']
 })
 export class UpdateFormBookComponent implements OnInit {
-  @Input() selectedBook: PlainBookModel;
   editedBook: BookModel;
+  @Input() set selectedBook(data: PlainBookModel) {
+    if (data) {
+      this.editedBook.title = data.title;
+    }
+  }
   constructor() { }
 
   ngOnInit() {

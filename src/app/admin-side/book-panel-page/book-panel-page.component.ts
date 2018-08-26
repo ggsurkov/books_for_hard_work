@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, OnDestroy} from '@angular/core';
 import {BookModel} from "../../models/book.model";
 
 @Component({
@@ -18,6 +18,8 @@ export class BookPanelPageComponent implements OnInit {
     {guid: "g-8", title: "Моя жизнь. Мои достижения8", author: "Генри Форд"}
   ];
   selectedBook: BookModel;
+
+
   constructor() {
 
   }
@@ -26,7 +28,8 @@ export class BookPanelPageComponent implements OnInit {
 
   }
 
-  selectBookForEdit(guid: string) {
+  selectBookForEdit(guid: string): void {
     // get запрос по guid'у для загрузки книги
+    this.selectedBook.title = "Выбрал";
   }
 }

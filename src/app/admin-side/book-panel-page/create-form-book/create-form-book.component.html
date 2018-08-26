@@ -1,39 +1,47 @@
-<form  (submit)="saveBook()" #menuForm="ngForm" autocomplete="off">
+<form (submit)="saveBook()" #menuForm="ngForm" autocomplete="off">
   <mat-form-field>
-    <input required matInput type="text" placeholder="Название" [(ngModel)]="newBook.title">
+    <input name="title" required matInput type="text" placeholder="Название" [(ngModel)]="newBook.title">
   </mat-form-field>
   <mat-form-field>
-    <input required matInput type="text" placeholder="Автор" [ngModel]="newBook.author">
+    <input name="author" required matInput type="text" placeholder="Автор" [ngModel]="newBook.author">
   </mat-form-field>
-    <button class="download-button" mat-button>Загрузить обложку
-      <input type="file" placeholder="Обложка" >
+  <div id="downloadInput">
+    <label class="gray-label">Загрузить обложку</label>
+    <button type="button" mat-button mat-raised-button color="primary" (click)="img.click()">
+      <span>Загрузить</span>
+      <input type="file" #img name="img" accept="application/xml">
     </button>
+    <span style="text-decoration: underline"></span>
+  </div>
   <mat-form-field>
-    <input required matInput type="text" placeholder="Короткое описание" [ngModel]="newBook.shortDescription">
+    <input name="shortDecription" required matInput type="text" placeholder="Короткое описание"
+           [ngModel]="newBook.shortDescription">
   </mat-form-field>
   <mat-form-field>
-    <textarea required matInput type="text" placeholder="Полное описание" [ngModel]="newBook.description"></textarea>
+    <textarea name="description" required matInput type="text" placeholder="Полное описание"
+              [ngModel]="newBook.description"></textarea>
   </mat-form-field>
   <mat-form-field>
     <mat-select type="text" placeholder="Выбрать коллекцию"></mat-select>
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" placeholder="Ссылка на литрес">
+    <input name="link1" matInput type="text" placeholder="Ссылка на литрес">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" placeholder="Ссылка на альпину">
+    <input name="link2" matInput type="text" placeholder="Ссылка на альпину">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" placeholder="Ссылка на лабиринт">
+    <input name="link3" matInput type="text" placeholder="Ссылка на лабиринт">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" placeholder="Ссылка на республику">
+    <input name="link4" matInput type="text" placeholder="Ссылка на республику">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" placeholder="Ссылка на буквоед">
+    <input name="link5" matInput type="text" placeholder="Ссылка на буквоед">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" placeholder="Ссылка на ютуб отзыв" [ngModel]="newBook.youtubeReviewVideoCodes">
+    <input name="linkYotube" matInput type="text" placeholder="Ссылка на ютуб отзыв"
+           [ngModel]="newBook.youtubeReviewVideoCodes">
   </mat-form-field>
 
 

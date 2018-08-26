@@ -20,6 +20,12 @@ import { CreateCollectionFormComponent } from './admin-side/collection-panel-pag
 import { UpdateCollectionFormComponent } from './admin-side/collection-panel-page/update-collection-form/update-collection-form.component';
 import { AuthorPageComponent } from './client-side/author-page/author-page.component';
 import { MenuHeaderComponent } from './components/menu-header/menu-header.component';
+import {NgxsStoragePluginModule, StorageOption} from '@ngxs/storage-plugin';
+import {environment} from "../environments/environment.prod";
+import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
+import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +49,15 @@ import { MenuHeaderComponent } from './components/menu-header/menu-header.compon
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    NgxsStoragePluginModule.forRoot({
+      storage: StorageOption.SessionStorage
+    }),
+    NgxsLoggerPluginModule.forRoot({
+      disabled: environment.production
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot({
+      disabled: environment.production
+    })
 
   ],
   providers: [IconSvgRegistryService, CdkColumnDef],

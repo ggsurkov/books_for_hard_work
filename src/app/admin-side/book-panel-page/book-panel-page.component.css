@@ -2,7 +2,8 @@
   width: 80%
 }
 .tab-and-table-block__tabs {
-  width: 40%
+  width: 40%;
+  margin-top: 8px;
 }
 .tab-and-table-block__edit {
   width: 40%

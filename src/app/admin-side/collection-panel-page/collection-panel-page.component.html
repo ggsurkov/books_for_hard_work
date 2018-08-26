@@ -12,13 +12,13 @@
   <mat-table #table [dataSource]="dataSource">
     <ng-container cdkColumnDef="title">
       <mat-header-cell *cdkHeaderCellDef class="title-cell">Название</mat-header-cell>
-      <mat-cell *cdkCellDef="let book" class="title-cell" > {{book.title}} </mat-cell>
+      <mat-cell *cdkCellDef="let collection" class="title-cell" > {{collection.title}} </mat-cell>
     </ng-container>
-    <ng-container cdkColumnDef="author">
+    <ng-container cdkColumnDef="booksCount">
       <mat-header-cell *cdkHeaderCellDef class="author-cell">Автор</mat-header-cell>
-      <mat-cell  *cdkCellDef="let book" class="author-cell"> {{book.author}} </mat-cell>
+      <mat-cell *cdkCellDef="let collection" class="author-cell"> {{collection.booksCount}} </mat-cell>
     </ng-container>
-    <mat-header-cell *cdkHeaderRowDef="['title', 'author']"></mat-header-cell>
-    <mat-row (click)="selectBookForEdit(book.guid)"  *cdkRowDef="let book; columns: ['title', 'author']"></mat-row>
+    <mat-header-row *cdkHeaderRowDef="['title', 'booksCount']"></mat-header-row>
+    <mat-row (click)="selectCollectionForEdit(collection.guid)"  *cdkRowDef="let collection; columns: ['title', 'booksCount']"></mat-row>
   </mat-table>
 </div>

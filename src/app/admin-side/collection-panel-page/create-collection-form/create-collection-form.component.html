@@ -1,12 +1,12 @@
 <form  (submit)="saveCollection()" #menuForm="ngForm" autocomplete="off">
   <mat-form-field>
-    <input required matInput type="text" placeholder="Название" [(ngModel)]="newCollection.title">
+    <input name="title" required matInput type="text" placeholder="Название" [(ngModel)]="newCollection.title">
   </mat-form-field>
   <button class="download-button" mat-button>Загрузить обложку
-    <input type="file" placeholder="Обложка" >
+    <input name="img" type="file" placeholder="Обложка" >
   </button>
   <mat-form-field>
-    <textarea required matInput type="text" placeholder="Полное описание" [ngModel]="newCollection.description"></textarea>
+    <textarea name="description" required matInput type="text" placeholder="Полное описание" [ngModel]="newCollection.description"></textarea>
   </mat-form-field>
   <mat-form-field>
     <mat-select type="text" placeholder="Выбрать книгу"></mat-select>
