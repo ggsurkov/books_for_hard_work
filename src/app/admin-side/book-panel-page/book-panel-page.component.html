@@ -21,6 +21,6 @@
       <mat-cell  *cdkCellDef="let book" class="author-cell"> {{book.author}} </mat-cell>
     </ng-container>
     <mat-header-row *cdkHeaderRowDef="['title', 'author']"></mat-header-row>
-    <mat-row (click)="selectBookForEdit(book.guid)"  *cdkRowDef="let book; columns: ['title', 'author']"></mat-row>
+    <mat-row (click)="selectBookForEdit(book)"  *cdkRowDef="let book; columns: ['title', 'author']"></mat-row>
   </mat-table>
 </div>

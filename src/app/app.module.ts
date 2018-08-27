@@ -9,7 +9,7 @@ import { BookPageComponent } from './client-side/book-page/book-page.component';
 import { MainPageComponent } from './client-side/main-page/main-page.component';
 import { BookCollectionPageComponent } from './client-side/book-collection-page/book-collection-page.component';
 import {IconSvgRegistryService} from "../core/helpers/icon.service";
-import { AdminPanelPageComponent } from './admin-side/conteiner/admin-panel-page.component';
+import { AdminPanelPageComponent } from './admin-side/container/admin-panel-page.component';
 import {BookPanelPageComponent} from "./admin-side/book-panel-page/book-panel-page.component";
 import {CollectionPanelPageComponent} from "./admin-side/collection-panel-page/collection-panel-page.component";
 import { CreateFormBookComponent } from './admin-side/book-panel-page/create-form-book/create-form-book.component';

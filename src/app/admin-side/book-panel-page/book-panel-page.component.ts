@@ -6,7 +6,7 @@ import {BookModel} from "../../models/book.model";
   templateUrl: './book-panel-page.component.html',
   styleUrls: ['./book-panel-page.component.css']
 })
-export class BookPanelPageComponent implements OnInit {
+export class BookPanelPageComponent implements OnInit, OnDestroy {
   dataSource: any = [
     {guid: "g-1", title: "Моя жизнь. Мои достижения1", author: "Генри Форд"},
     {guid: "g-2", title: "Моя жизнь. Мои достижения2", author: "Генри Форд"},
@@ -18,7 +18,7 @@ export class BookPanelPageComponent implements OnInit {
     {guid: "g-8", title: "Моя жизнь. Мои достижения8", author: "Генри Форд"}
   ];
   selectedBook: BookModel;
-
+  @Output() selectedBookEvent: EventEmitter<BookModel> = new EventEmitter<BookModel>();
 
   constructor() {
 
@@ -28,8 +28,11 @@ export class BookPanelPageComponent implements OnInit {
 
   }
 
-  selectBookForEdit(guid: string): void {
-    // get запрос по guid'у для загрузки книги
-    this.selectedBook.title = "Выбрал";
+  ngOnDestroy() {
+    this.selectedBookEvent.unsubscribe();
+  }
+
+  selectBookForEdit(book: BookModel): void {
+    this.selectedBookEvent.emit(book)
   }
 }

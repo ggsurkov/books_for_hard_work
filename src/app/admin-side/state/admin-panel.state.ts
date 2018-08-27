@@ -1,8 +1,9 @@
-import {State} from "@ngxs/store";
+import {Action, State, StateContext} from "@ngxs/store";
 import {PlainBookModel} from "../../models/plain-book.model";
 import {PlainCollectionModel} from "../../models/plain-collection.model";
 import {BookModel} from "../../models/book.model";
 import {CollectionModel} from "../../models/collection.model";
+import {SelectBook} from "../action/admin-panel.action";
 
 export interface AdminPanelStateModel {
   plainBooks: PlainBookModel[];
@@ -25,5 +26,10 @@ export class AdminPanelState {
   constructor() {
   }
 
+
+  @Action(SelectBook)
+  selectBook({patchState}: StateContext<AdminPanelStateModel>, {payload}: SelectBook): void {
+    patchState({selectedEditedBook: payload})
+  }
 
 }
