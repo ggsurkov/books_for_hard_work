@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {PlainBookModel} from "../../../models/plain-book.model";
 import {BookModel} from "../../../models/book.model";
 
@@ -7,19 +7,16 @@ import {BookModel} from "../../../models/book.model";
   templateUrl: './update-form-book.component.html',
   styleUrls: ['./update-form-book.component.css']
 })
-export class UpdateFormBookComponent implements OnInit {
-  editedBook: BookModel;
-  @Input() set selectedBook(data: PlainBookModel) {
-    if (data) {
-      this.editedBook.title = data.title;
-    }
-  }
+export class UpdateFormBookComponent implements OnDestroy {
+  @Input() selectedEditedBook: BookModel;
+  @Output() updateBook: EventEmitter<BookModel> = new EventEmitter<BookModel>();
   constructor() { }
 
-  ngOnInit() {
+  ngOnDestroy() {
+
   }
-  updateBook(book: BookModel) {
-    // TODO post request for update
+  updateSelectedBook() {
+    this.updateBook.emit(this.selectedEditedBook)
   }
 
   deleteBook() {

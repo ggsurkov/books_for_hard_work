@@ -1,12 +1,17 @@
-<form  (submit)="updateCollection()" #menuForm="ngForm" autocomplete="off">
+<form  (submit)="updateSelectedCollection()" #menuForm="ngForm" autocomplete="off" *ngIf="selectedEditedCollection">
   <mat-form-field>
-    <input required matInput type="text" placeholder="Название" [(ngModel)]="editedCollection.title">
+    <input name="title" required matInput type="text" placeholder="Название" [(ngModel)]="selectedEditedCollection.title">
   </mat-form-field>
-  <button class="download-button" mat-button>Загрузить обложку
-    <input type="file" placeholder="Обложка" >
-  </button>
+  <div id="downloadInput">
+    <label class="gray-label">Загрузить обложку</label>
+    <button type="button" mat-button mat-raised-button color="primary" (click)="img.click()">
+      <span>Загрузить</span>
+      <input type="file" #img name="img" accept="application/xml">
+    </button>
+    <span style="text-decoration: underline"></span>
+  </div>
   <mat-form-field>
-    <textarea required matInput type="text" placeholder="Полное описание" [ngModel]="editedCollection.description"></textarea>
+    <textarea name="description" required matInput type="text" placeholder="Полное описание" [ngModel]="selectedEditedCollection.description"></textarea>
   </mat-form-field>
   <mat-form-field>
     <mat-select type="text" placeholder="Выбрать книгу"></mat-select>
@@ -17,5 +22,8 @@
     <button mat-raised-button color="primary" type="submit">Обновить</button>
     <button mat-raised-button color="danger" type="button" (click)="deleteCollection()">Удалить</button>
   </div>
-
 </form>
+
+
+
+

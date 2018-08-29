@@ -25,6 +25,7 @@ import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import {AppRoutingModule} from "./app.routing";
 import {AdminPanelModule} from "./admin-side/admin-panel.module";
+import {NgxsModule} from "@ngxs/store";
 
 
 @NgModule({
@@ -51,14 +52,16 @@ import {AdminPanelModule} from "./admin-side/admin-panel.module";
     HttpClientModule,
     AppRoutingModule,
     AdminPanelModule,
+    NgxsModule.forRoot([
+    ]),
     NgxsStoragePluginModule.forRoot({
       storage: StorageOption.SessionStorage
     }),
     NgxsLoggerPluginModule.forRoot({
-      disabled: environment.production
+      // disabled: environment.production
     }),
     NgxsReduxDevtoolsPluginModule.forRoot({
-      disabled: environment.production
+      // disabled: environment.production
     })
 
   ],

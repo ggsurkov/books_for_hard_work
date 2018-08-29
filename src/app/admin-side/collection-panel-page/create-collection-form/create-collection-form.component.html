@@ -2,9 +2,14 @@
   <mat-form-field>
     <input name="title" required matInput type="text" placeholder="Название" [(ngModel)]="newCollection.title">
   </mat-form-field>
-  <button class="download-button" mat-button>Загрузить обложку
-    <input name="img" type="file" placeholder="Обложка" >
-  </button>
+  <div id="downloadInput">
+    <label class="gray-label">Загрузить обложку</label>
+    <button type="button" mat-button mat-raised-button color="primary" (click)="img.click()">
+      <span>Загрузить</span>
+      <input type="file" #img name="img" accept="application/xml">
+    </button>
+    <span style="text-decoration: underline"></span>
+  </div>
   <mat-form-field>
     <textarea name="description" required matInput type="text" placeholder="Полное описание" [ngModel]="newCollection.description"></textarea>
   </mat-form-field>

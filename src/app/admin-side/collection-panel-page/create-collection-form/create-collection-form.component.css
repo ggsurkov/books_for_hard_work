@@ -1,0 +1,36 @@
+form {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  margin: 20px 0
+}
+.download-button {
+  width: 70%
+}
+#downloadInput {
+  padding: 15px 0;
+  display: flex;
+}
+
+#downloadInput input {
+  display: none;
+}
+
+.gray-label {
+  font-weight: 700;
+  color: #8b8f97;
+  display: flex;
+  margin-right: 10px;
+  align-items: center;
+}
+
+#downloadInput label {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+#odpt-info-jpos button {
+  margin: 0 15px;
+  display: flex;
+  text-transform: uppercase;
+}

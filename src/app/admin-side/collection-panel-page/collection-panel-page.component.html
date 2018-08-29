@@ -3,10 +3,13 @@
 <div class="row tab-and-table-block">
   <mat-tab-group class="tab-and-table-block__tabs">
     <mat-tab class="tab-and-table-block__create" label="Новая">
-      <app-create-form-book></app-create-form-book>
+      <app-create-collection-form></app-create-collection-form>
     </mat-tab>
     <mat-tab class="tab-and-table-block__edit" label="Выбранная">
-      <app-update-form-book></app-update-form-book>
+      <app-update-collection-form
+        [selectedEditedCollection]="selectedEditedCollection$ | async"
+        (updateCollection)="updateCollection($event)"
+      ></app-update-collection-form>
     </mat-tab>
   </mat-tab-group>
   <mat-table #table [dataSource]="dataSource">
@@ -19,6 +22,6 @@
       <mat-cell *cdkCellDef="let collection" class="author-cell"> {{collection.booksCount}} </mat-cell>
     </ng-container>
     <mat-header-row *cdkHeaderRowDef="['title', 'booksCount']"></mat-header-row>
-    <mat-row (click)="selectCollectionForEdit(collection.guid)"  *cdkRowDef="let collection; columns: ['title', 'booksCount']"></mat-row>
+    <mat-row (click)="selectCollectionForEdit(collection)"  *cdkRowDef="let collection; columns: ['title', 'booksCount']"></mat-row>
   </mat-table>
 </div>
