@@ -3,11 +3,13 @@ import {PlainBookModel} from "../../models/plain-book.model";
 import {PlainCollectionModel} from "../../models/plain-collection.model";
 import {BookModel} from "../../models/book.model";
 import {CollectionModel} from "../../models/collection.model";
-import {ClearBookPageState, GetAllPlainBooks, SelectBook, UpdateBook} from "../action/book.action";
+import {ClearBookPageState, GetAllPlainBooks, SaveNewBook, SelectBook, UpdateBook} from "../action/book.action";
 import {
   ClearCollectionPageState, GetAllPlainCollections, SelectCollection,
   UpdateCollection
 } from "../action/collection.action";
+import {BookPanelPageService} from "../book-panel-page/book-panel-page.service";
+import {tap} from "rxjs/internal/operators";
 
 export interface AdminPanelStateModel {
   plainBooks: PlainBookModel[];
@@ -27,7 +29,7 @@ export interface AdminPanelStateModel {
 })
 export class AdminPanelState {
 
-  constructor() {
+  constructor(private bookPanelPageService: BookPanelPageService) {
   }
 
   @Action(ClearBookPageState)
@@ -57,7 +59,17 @@ export class AdminPanelState {
     });
     patchState({plainBooks: plainBooks})
   }
-
+  @Action(SaveNewBook)
+  saveNewBook({patchState, getState}: StateContext<AdminPanelStateModel>, {payload}: SaveNewBook): void {
+    const adminPanelStateModel: AdminPanelStateModel = getState();
+    this.bookPanelPageService.saveNewBook(payload).subscribe(() => {
+      console.log('Post request add')
+    });
+    // this.bookPanelPageService.saveNewBook(payload).pipe(tap(() => {
+    //   adminPanelStateModel.plainBooks.push(payload);
+    //   patchState({plainBooks: adminPanelStateModel.plainBooks});
+    // }));
+  }
 
   @Action(ClearCollectionPageState)
   clearCollectionPageState({setState}: StateContext<AdminPanelStateModel>): void {

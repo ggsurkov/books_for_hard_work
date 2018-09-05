@@ -38,34 +38,34 @@ router.put("/:guid", (req, res, next) => {
     bookCollection: req.body.bookCollection,
     refShopButtons: req.body.refShopButtons,
   });
-  Post.updateOne({ _id: req.params.guid }, book).then(result => {
+  BookModel.updateOne({ _id: req.params.guid }, book).then(result => {
     res.status(200).json({ message: "Update successful!" });
   });
 });
 
 router.get("", (req, res, next) => {
-  Post.find().then(books => {
+  BookModel.find().then(books => {
     res.status(200).json({
-      message: "Posts fetched successfully!",
+      message: "Books fetched successfully!",
       books: books
     });
   });
 });
 
 router.get("/:guid", (req, res, next) => {
-  Post.findById(req.params.guid).then(book => {
+  BookModel.findById(req.params.guid).then(book => {
     if (book) {
       res.status(200).json(book);
     } else {
-      res.status(404).json({ message: "Post not found!" });
+      res.status(404).json({ message: "Book not found!" });
     }
   });
 });
 
 router.delete("/:guid", (req, res, next) => {
-  Post.deleteOne({ _id: req.params.guid }).then(result => {
+  BookModel.deleteOne({ _id: req.params.guid }).then(result => {
     console.log(result);
-    res.status(200).json({ message: "Post deleted!" });
+    res.status(200).json({ message: "Book deleted!" });
   });
 });
 

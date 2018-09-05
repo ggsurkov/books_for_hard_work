@@ -4,7 +4,7 @@ import {AdminPanelPageComponent} from "./container/admin-panel-page.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'admin-panel',
     component: AdminPanelPageComponent,
     pathMatch: 'full',
   }

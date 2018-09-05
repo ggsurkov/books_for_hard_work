@@ -3,7 +3,9 @@
 <div class="row tab-and-table-block">
   <mat-tab-group class="tab-and-table-block__tabs">
     <mat-tab class="tab-and-table-block__create" label="Новая">
-      <app-create-form-book></app-create-form-book>
+      <app-create-form-book
+      (saveNewBook)="saveNewBook($event)"
+      ></app-create-form-book>
     </mat-tab>
     <mat-tab class="tab-and-table-block__edit" label="Выбранная">
       <app-update-form-book

@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {routing} from "./admin-panel.routing";
 import {AdminPanelState} from "./state/admin-panel.state";
+import {BookPanelPageService} from "./book-panel-page/book-panel-page.service";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import {AdminPanelState} from "./state/admin-panel.state";
       AdminPanelState
     ]),
   ],
-  providers: [],
+  providers: [BookPanelPageService],
   entryComponents: []
 })
 export class AdminPanelModule {

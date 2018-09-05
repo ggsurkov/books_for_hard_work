@@ -26,6 +26,7 @@ import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import {AppRoutingModule} from "./app.routing";
 import {AdminPanelModule} from "./admin-side/admin-panel.module";
 import {NgxsModule} from "@ngxs/store";
+import {ObjectService} from "../core/helpers/object.service";
 
 
 @NgModule({
@@ -65,7 +66,7 @@ import {NgxsModule} from "@ngxs/store";
     })
 
   ],
-  providers: [IconSvgRegistryService, CdkColumnDef],
+  providers: [IconSvgRegistryService, CdkColumnDef, ObjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

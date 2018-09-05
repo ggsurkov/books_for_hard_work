@@ -1,21 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, OnDestroy, ViewChild, Output} from '@angular/core';
 import {BookModel, createEmptyBook} from "../../../models/book.model";
+import {NgForm} from "@angular/forms";
+import {ObjectService} from "../../../../core/helpers/object.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-create-form-book',
   templateUrl: './create-form-book.component.html',
   styleUrls: ['./create-form-book.component.css']
 })
-export class CreateFormBookComponent implements OnInit {
+export class CreateFormBookComponent implements OnInit, OnDestroy {
   newBook: BookModel = createEmptyBook();
-  constructor() {
+  @Output() saveNewBook: EventEmitter<BookModel> = new EventEmitter<BookModel>();
+
+  constructor(private objectService: ObjectService, private http: HttpClient) {
 
   }
 
   ngOnInit() {
 
   }
-  saveBook(book: BookModel) {
-    // TODO post request to save
+  ngOnDestroy() {
+    this.saveNewBook.unsubscribe();
   }
+  saveBook(form: NgForm) {
+    if(form.invalid) {
+      return
+    } else {
+      const newBook = this.objectService.mergeObjects(this.newBook, form.value);
+      this.saveNewBook.emit(newBook);
+      form.resetForm();
+    }
+  }
+
 }

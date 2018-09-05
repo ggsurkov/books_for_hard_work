@@ -8,4 +8,4 @@ const refInfoButtonSchema = mongoose.Schema({
   enabled: { type: Boolean, required: true },
 });
 
-module.exports = mongoose.model('refInfoButtonModel', refInfoButtonSchema);
+module.exports = mongoose.model('RefInfoButtonModel', refInfoButtonSchema);

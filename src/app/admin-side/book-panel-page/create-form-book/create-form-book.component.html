@@ -1,6 +1,6 @@
-<form (submit)="saveBook()" #menuForm="ngForm" autocomplete="off">
+<form (submit)="saveBook(postForm)" autocomplete="off" #postForm="ngForm">
   <mat-form-field>
-    <input name="title" required matInput type="text" placeholder="Название" [(ngModel)]="newBook.title">
+    <input name="title" required matInput type="text" placeholder="Название" [ngModel]="newBook.title">
   </mat-form-field>
   <mat-form-field>
     <input name="author" required matInput type="text" placeholder="Автор" [ngModel]="newBook.author">
@@ -14,7 +14,7 @@
     <span style="text-decoration: underline"></span>
   </div>
   <mat-form-field>
-    <input name="shortDecription" required matInput type="text" placeholder="Короткое описание"
+    <input name="shortDescription" required matInput type="text" placeholder="Короткое описание"
            [ngModel]="newBook.shortDescription">
   </mat-form-field>
   <mat-form-field>

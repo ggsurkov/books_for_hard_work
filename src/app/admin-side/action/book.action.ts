@@ -14,6 +14,13 @@ export class UpdateBook {
   }
 }
 
+export class SaveNewBook {
+  static readonly type = '[BookModel] SaveNewBook book';
+
+  constructor(public payload: BookModel) {
+  }
+}
+
 export class GetAllPlainBooks {
   static readonly type = '[PlainBook] download all plain books for table';
 }
