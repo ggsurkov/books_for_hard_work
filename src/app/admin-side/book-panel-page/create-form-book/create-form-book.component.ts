@@ -11,6 +11,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class CreateFormBookComponent implements OnInit, OnDestroy {
   newBook: BookModel = createEmptyBook();
+  imagePreview: string;
   @Output() saveNewBook: EventEmitter<BookModel> = new EventEmitter<BookModel>();
 
   constructor(private objectService: ObjectService, private http: HttpClient) {
@@ -32,5 +33,19 @@ export class CreateFormBookComponent implements OnInit, OnDestroy {
       form.resetForm();
     }
   }
+
+  onImagePicked(event: Event, form: NgForm) {
+    const file = (event.target as HTMLInputElement).files[0];
+    // form.patchValue({image: file});
+    // form.get('image').updateValueAndValidity();
+    this.newBook.img = file;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+
 
 }

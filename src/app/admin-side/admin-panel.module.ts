@@ -1,6 +1,6 @@
 import {NgxsModule} from "@ngxs/store";
 import {NgModule} from "@angular/core";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {routing} from "./admin-panel.routing";
 import {AdminPanelState} from "./state/admin-panel.state";

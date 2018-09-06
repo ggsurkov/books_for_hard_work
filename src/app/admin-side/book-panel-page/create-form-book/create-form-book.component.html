@@ -6,12 +6,13 @@
     <input name="author" required matInput type="text" placeholder="Автор" [ngModel]="newBook.author">
   </mat-form-field>
   <div id="downloadInput">
-    <label class="gray-label">Загрузить обложку</label>
     <button type="button" mat-button mat-raised-button color="primary" (click)="img.click()">
       <span>Загрузить</span>
-      <input type="file" #img name="img" accept="application/xml">
+      <input type="file" #img name="img" (change)="onImagePicked($event, postForm)">
     </button>
-    <span style="text-decoration: underline"></span>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+      <img [src]="imagePreview">
+    </div>
   </div>
   <mat-form-field>
     <input name="shortDescription" required matInput type="text" placeholder="Короткое описание"
