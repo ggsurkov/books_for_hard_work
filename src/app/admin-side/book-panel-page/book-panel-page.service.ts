@@ -10,9 +10,11 @@ export class BookPanelPageService {
   }
 
   saveNewBook(book: BookModel): Observable<BookModel> {
-   return this.http.post<BookModel>("http://localhost:3000/api/books", book)
+    const postData = new FormData();
+    postData.append("image", book.image);
+   return this.http.post<BookModel>("http://localhost:3000/api/books", book);
   }
   getAllBooks(): Observable<BookModel[]>  {
-    return this.http.get<BookModel[]>("http://localhost:3000/api/books")
+    return this.http.get<BookModel[]>("http://localhost:3000/api/books");
   }
 }

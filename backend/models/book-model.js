@@ -6,7 +6,7 @@ const bookSchema = mongoose.Schema({
   guid: { type: String, required: true },
   title: { type: String, required: true },
   author: { type: String, required: true },
-  img: { type: String },
+  imagePath: { type: String },
   shortDescription: { type: String },
   description: { type: String },
   vote: { type: Number },

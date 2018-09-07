@@ -1,11 +1,11 @@
 import {CollectionModel, createCollectionWithBooks} from './collection.model';
-import {createDefaultsRefInfoButton, RefInfoButtonModel} from "./ref-info-button.model";
+import {RefInfoButtonModel} from './ref-info-button.model';
 
 export interface BookModel {
   guid: string;
   title: string;
   author: string;
-  img: {
+  image: {
     lastModified: number,
     lastModifiedDate: Date,
     name: string,
@@ -13,6 +13,7 @@ export interface BookModel {
     type: string,
     webkitRelativePath: string,
   };
+  imagePath: string;
   shortDescription: string;
   description: string;
   vote: number;
@@ -26,7 +27,8 @@ export function createExampleBook() {
     guid: "123123123",
     title: "Генри Форд. Моя жизнь. Мои достижения",
     author: "Генри Форд",
-    img: null,
+    image: null,
+    imagePath: null,
     shortDescription: "Книга \"Моя жизнь. Мои достижения\" известного американского промышленника Генри Форда является интереснейшим философским и историческим трактатом, объясняющим временного мироустройства.",
     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus asperiores dolor et fuga, id illo, maxime nobis obcaecati, officiis quibusdam sapiente voluptatum. Adipisci aperiam aut consequuntur cum dolore ducimus eius eligendi et ex id ipsum itaque magni mollitia natus nesciunt nostrum odit, officiis placeat quae quo repudiandae sequi soluta sunt tempora temporibus velit veritatis voluptatibus. Accusantium aperiam cum dolor eaque harum illo maiores, quia quisquam. Ad aspernatur dicta, dolor eos, error mollitia, nihil numquam optio quaerat quidem sed vero. Accusamus, autem commodi consectetur consequuntur cumque debitis distinctio doloremque maiores maxime nam nemo nobis nulla optio quisquam ut? Architecto at beatae delectus fuga fugit laboriosam sapiente? Amet est incidunt itaque, odio praesentium qui saepe sint. Ad amet autem blanditiis commodi corporis culpa cupiditate distinctio eaque est, eum explicabo facere facilis fuga fugiat fugit id, in itaque laboriosam mollitia nihil odio pariatur, possimus quidem quis recusandae rem repellendus repudiandae soluta tempora ullam velit vero voluptatem voluptatibus.\n" +
     "Accusamus, assumenda aut esse ex fuga hic illum iure laboriosam molestiae mollitia nostrum, officia reprehenderit tenetur velit voluptatum. Blanditiis doloribus ducimus esse est et exercitationem illo, inventore ipsa minima, nesciunt odit qui temporibus? Dolorem hic officia recusandae voluptates voluptatibus! Accusamus assumenda ea exercitationem hic impedit iure iusto natus nihil nostrum quo! Est facilis labore optio perspiciatis repellat totam ullam unde voluptatibus! A consequatur earum eius esse expedita fuga id ipsam laboriosam magni molestiae nisi nulla obcaecati quidem ratione repellat sapiente sunt ut veritatis, voluptas voluptatem? Alias amet beatae laudantium magnam pariatur placeat tenetur vero? Necessitatibus, rem!",
@@ -42,7 +44,8 @@ export function createEmptyBook() {
     guid: "empty-guid",
     title: null,
     author: null,
-    img: null,
+    image: null,
+    imagePath: null,
     shortDescription: null,
     description: null,
     vote: null,
