@@ -12,7 +12,7 @@ import {HttpClient} from "@angular/common/http";
 export class CreateFormBookComponent implements OnInit, OnDestroy {
   newBook: BookModel = createEmptyBook();
   imagePreview: string;
-  @Output() saveNewBook: EventEmitter<{BookModel, File}> = new EventEmitter<{BookModel, File}>();
+  @Output() saveNewBook: EventEmitter<{BookModel}> = new EventEmitter<{BookModel, File}>();
 
   constructor(private objectService: ObjectService, private http: HttpClient) {
 
@@ -29,7 +29,7 @@ export class CreateFormBookComponent implements OnInit, OnDestroy {
       return;
     } else {
       const newBook = this.objectService.mergeObjects(this.newBook, form.value);
-      this.saveNewBook.emit({newBook, form.value.image});
+      this.saveNewBook.emit(newBook);
       form.resetForm();
     }
   }

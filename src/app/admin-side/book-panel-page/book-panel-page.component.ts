@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, OnDestroy} from '@angular/core';
 import {BookModel} from "../../models/book.model";
 import {Select, Store} from "@ngxs/store";
-import {SaveNewBook, SelectBook, UpdateBook} from "../action/book.action";
+import {GetAllPlainBooks, SaveNewBook, SelectBook, UpdateBook} from "../action/book.action";
 import {Observable} from "rxjs/index";
 import {HttpClient} from "@angular/common/http";
 import {BookPanelPageService} from "./book-panel-page.service";
@@ -30,9 +30,7 @@ export class BookPanelPageComponent implements OnInit{
 
   }
   ngOnInit() {
-    this.bookPanelPageService.getAllBooks().subscribe((books) => {
-      console.log(books);
-    })
+    this.store.dispatch(new GetAllPlainBooks);
   }
 
   selectBookForEdit(book: BookModel): void {
@@ -44,6 +42,8 @@ export class BookPanelPageComponent implements OnInit{
   }
 
   saveNewBook(book: BookModel) {
-    this.store.dispatch(new SaveNewBook(book));
+    this.store.dispatch(new SaveNewBook(book)).subscribe(() => {
+      this.store.dispatch(new GetAllPlainBooks);
+    });
   }
 }

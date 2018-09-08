@@ -10,12 +10,16 @@ form {
 #downloadInput {
   padding: 15px 0;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #downloadInput input {
   display: none;
 }
-
+#downloadInput button {
+  max-height: 40px;
+}
 .gray-label {
   font-weight: 700;
   color: #8b8f97;
@@ -35,7 +39,7 @@ form {
   text-transform: uppercase;
 }
 .image-preview {
-  height: 5rem;
+  height: 10rem;
   margin: 1rem 0;
 }
 .image-preview img{

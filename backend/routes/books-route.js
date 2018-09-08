@@ -31,13 +31,14 @@ const storage = multer.diskStorage({
 });
 
 
-router.post("", multer({ storage: storage }).single("image"), (req, res, next) => {
+router.post("/new", multer({storage: storage}).single("image"), (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
-  const post = new BookModel({
+  debugger;
+  const book = new BookModel({
     guid: req.body.guid,
     title: req.body.title,
     author: req.body.author,
-    img: url + "/images/" + req.file.filename,
+    imagePath: url + "/images/" + req.body.image.name,
     shortDescription: req.body.shortDescription,
     description: req.body.description,
     vote: req.body.vote,
@@ -45,10 +46,17 @@ router.post("", multer({ storage: storage }).single("image"), (req, res, next) =
     bookCollection: req.body.bookCollection,
     refShopButtons: req.body.refShopButtons,
   });
-  post.save().then(createdBook => {
+  book.save().then(createdBook => {
+    let plainBook = createdBook.map(book =>
+      ({
+        guid: book._id,
+        title: book.title,
+        author: book.author
+      }));
     res.status(201).json({
       message: "Post added successfully",
-      guid: createdBook._id
+      guid: createdBook._id,
+      plainBook: plainBook
     });
   });
 });
@@ -66,16 +74,21 @@ router.put("/:guid", (req, res, next) => {
     bookCollection: req.body.bookCollection,
     refShopButtons: req.body.refShopButtons,
   });
-  BookModel.updateOne({ _id: req.params.guid }, book).then(result => {
-    res.status(200).json({ message: "Update successful!" });
+  BookModel.updateOne({_id: req.params.guid}, book).then(result => {
+    res.status(200).json({message: "Update successful!"});
   });
 });
 
-router.get("", (req, res, next) => {
+router.get("/all", (req, res, next) => {
   BookModel.find().then(books => {
+    let plainBooks = books.map(book =>
+      ({
+        guid: book.guid,
+        title: book.title,
+        author: book.author
+      }));
     res.status(200).json({
-      message: "Books fetched successfully!",
-      books: books
+      plainBooks: plainBooks,
     });
   });
 });
@@ -85,15 +98,15 @@ router.get("/:guid", (req, res, next) => {
     if (book) {
       res.status(200).json(book);
     } else {
-      res.status(404).json({ message: "Book not found!" });
+      res.status(404).json({message: "Book not found!"});
     }
   });
 });
 
 router.delete("/:guid", (req, res, next) => {
-  BookModel.deleteOne({ _id: req.params.guid }).then(result => {
+  BookModel.deleteOne({_id: req.params.guid}).then(result => {
     console.log(result);
-    res.status(200).json({ message: "Book deleted!" });
+    res.status(200).json({message: "Book deleted!"});
   });
 });
 
