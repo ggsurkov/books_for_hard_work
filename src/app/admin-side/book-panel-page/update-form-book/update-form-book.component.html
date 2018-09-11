@@ -1,9 +1,9 @@
-<form (submit)="updateSelectedBook()" #menuForm="ngForm" autocomplete="off" *ngIf="selectedEditedBook">
+<form (submit)="updateSelectedBook()" #updateForm="ngForm" autocomplete="off" *ngIf="selectedEditedBook">
   <mat-form-field>
     <input name="title" required matInput type="text" placeholder="Название" [(ngModel)]="selectedEditedBook.title">
   </mat-form-field>
   <mat-form-field>
-    <input name="author" required matInput type="text" placeholder="Автор" [ngModel]="selectedEditedBook.author">
+    <input name="author" required matInput type="text" placeholder="Автор" [(ngModel)]="selectedEditedBook.author">
   </mat-form-field>
   <div id="downloadInput">
     <label class="gray-label">Загрузить обложку</label>
@@ -47,6 +47,6 @@
 
   <div class="action-buttons">
     <button mat-raised-button color="primary" type="submit">Обновить</button>
-    <button mat-raised-button color="danger" (click)="deleteBook()">Удалить</button>
+    <button mat-raised-button color="danger" (click)="deleteSelectedBook()">Удалить</button>
   </div>
 </form>

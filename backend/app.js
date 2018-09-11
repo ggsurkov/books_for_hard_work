@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const bookRoutes = require("./routes/books-route");
+const bookRoutes = require("./routes/books-routes");
+const collectionRoutes = require("./routes/collection-routes");
 
 const app = express();
 
@@ -59,6 +60,7 @@ app.use((req, res, next) => {
 //   // });
 // });
 
-app.use("/api/books",bookRoutes);
+app.use("/api/books", bookRoutes);
+app.use("/api/collections", collectionRoutes);
 
 module.exports = app;

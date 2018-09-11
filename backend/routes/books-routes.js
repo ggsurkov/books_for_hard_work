@@ -59,7 +59,7 @@ router.put("/:guid", (req, res, next) => {
   const book = new BookModel({
     title: req.body.title,
     author: req.body.author,
-    image: req.body.img,
+    imagePath: req.body.img,
     shortDescription: req.body.shortDescription,
     description: req.body.description,
     vote: req.body.vote,
@@ -98,8 +98,18 @@ router.get("/:guid", (req, res, next) => {
 
 router.delete("/delete/:guid", (req, res, next) => {
   BookModel.deleteOne({_id: req.params.guid}).then(result => {
-    console.log(result);
-    res.status(200).json({message: "Book deleted!"});
+    BookModel.find().then(books => {
+      let plainBooks = books.map(book =>
+        ({
+          guid: book._id,
+          title: book.title,
+          author: book.author
+        }));
+      res.status(200).json({
+        message: "Book deleted!",
+        plainBooks,
+      });
+    });
   });
 });
 
