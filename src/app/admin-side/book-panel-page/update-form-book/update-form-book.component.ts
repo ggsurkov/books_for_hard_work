@@ -10,6 +10,7 @@ import {BookModel} from "../../../models/book.model";
 export class UpdateFormBookComponent implements OnDestroy {
   @Input() selectedEditedBook: BookModel;
   @Output() updateBook: EventEmitter<BookModel> = new EventEmitter<BookModel>();
+  @Output() deleteBook: EventEmitter<string> = new EventEmitter<string>();
   constructor() { }
 
   ngOnDestroy() {
@@ -19,7 +20,7 @@ export class UpdateFormBookComponent implements OnDestroy {
     this.updateBook.emit(this.selectedEditedBook);
   }
 
-  deleteBook() {
-
+  deleteSelectedBook() {
+    this.deleteBook.emit(this.selectedEditedBook.guid);
   }
 }

@@ -13,15 +13,18 @@ export class BookPanelPageService {
   saveNewBook(book: BookModel): Observable<BookModel> {
    return this.http.post<BookModel>("http://localhost:3000/api/books/new", book);
   }
-  // getAllBooks(): Observable<{plainBooks: PlainBookModel[]}>  {
-  //   return this.http.get<{plainBooks: PlainBookModel[]}>("http://localhost:3000/api/books/all");
-  // }
-
-  getAllBooks()  {
-    return this.http.get("http://localhost:3000/api/books/all");
+  getAllBooks(): Observable<{plainBooks: PlainBookModel[]}>  {
+    return this.http.get<{plainBooks: PlainBookModel[]}>("http://localhost:3000/api/books/all");
   }
+
+  // getAllBooks()  {
+  //   return this.http.get("http://localhost:3000/api/books/all");
+  // }
 
   updateBook(book: BookModel): Observable<BookModel> {
     return this.http.put<BookModel>(`http://localhost:3000/api/books/${book.guid}`, book);
+  }
+  deleteBook(guid: string): Observable<{plainBooks: PlainBookModel[]}> {
+    return this.http.delete<{plainBooks: PlainBookModel[]}>(`http://localhost:3000/api/books/delete/${guid}`);
   }
 }

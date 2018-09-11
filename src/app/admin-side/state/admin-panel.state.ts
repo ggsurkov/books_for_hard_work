@@ -3,7 +3,7 @@ import {PlainBookModel} from '../../models/plain-book.model';
 import {PlainCollectionModel} from '../../models/plain-collection.model';
 import {BookModel} from '../../models/book.model';
 import {CollectionModel} from '../../models/collection.model';
-import {ClearBookPageState, GetAllPlainBooks, SaveNewBook, SelectBook, UpdateBook} from '../action/book.action';
+import {ClearBookPageState, DeleteBook, GetAllPlainBooks, SaveNewBook, SelectBook, UpdateBook} from '../action/book.action';
 import {ClearCollectionPageState, GetAllPlainCollections, SelectCollection, UpdateCollection} from '../action/collection.action';
 import {BookPanelPageService} from '../book-panel-page/book-panel-page.service';
 
@@ -70,6 +70,13 @@ export class AdminPanelState {
 
       adminPanelStateModel.plainBooks.push(newPlainBook);
       patchState({plainBooks: adminPanelStateModel.plainBooks});
+    });
+  }
+
+  @Action(DeleteBook)
+  deleteBook({patchState, getState}: StateContext<AdminPanelStateModel>, {payload}: DeleteBook): void {
+    this.bookPanelPageService.deleteBook(payload).subscribe((books: {plainBooks: PlainBookModel[]}) => {
+      patchState({plainBooks: books.plainBooks});
     });
   }
 

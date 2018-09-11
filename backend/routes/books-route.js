@@ -96,7 +96,7 @@ router.get("/:guid", (req, res, next) => {
   });
 });
 
-router.delete("/:guid", (req, res, next) => {
+router.delete("/delete/:guid", (req, res, next) => {
   BookModel.deleteOne({_id: req.params.guid}).then(result => {
     console.log(result);
     res.status(200).json({message: "Book deleted!"});
