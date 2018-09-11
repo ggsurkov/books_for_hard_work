@@ -16,7 +16,7 @@ export class UpdateFormBookComponent implements OnDestroy {
 
   }
   updateSelectedBook() {
-    this.updateBook.emit(this.selectedEditedBook)
+    this.updateBook.emit(this.selectedEditedBook);
   }
 
   deleteBook() {

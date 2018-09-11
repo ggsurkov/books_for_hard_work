@@ -31,14 +31,13 @@ const storage = multer.diskStorage({
 });
 
 
-router.post("/new", multer({storage: storage}).single("image"), (req, res, next) => {
+router.post("/new", (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
-  debugger;
   const book = new BookModel({
     guid: req.body.guid,
     title: req.body.title,
     author: req.body.author,
-    imagePath: url + "/images/" + req.body.image.name,
+    imagePath: url + "/images/" + req.body.image,
     shortDescription: req.body.shortDescription,
     description: req.body.description,
     vote: req.body.vote,
@@ -47,26 +46,20 @@ router.post("/new", multer({storage: storage}).single("image"), (req, res, next)
     refShopButtons: req.body.refShopButtons,
   });
   book.save().then(createdBook => {
-    let plainBook = createdBook.map(book =>
-      ({
-        guid: book._id,
-        title: book.title,
-        author: book.author
-      }));
     res.status(201).json({
       message: "Post added successfully",
       guid: createdBook._id,
-      plainBook: plainBook
+      title: createdBook.title,
+      author: createdBook.author,
     });
   });
 });
 
 router.put("/:guid", (req, res, next) => {
   const book = new BookModel({
-    _id: req.body.guid,
     title: req.body.title,
     author: req.body.author,
-    img: req.body.img,
+    image: req.body.img,
     shortDescription: req.body.shortDescription,
     description: req.body.description,
     vote: req.body.vote,
@@ -83,12 +76,12 @@ router.get("/all", (req, res, next) => {
   BookModel.find().then(books => {
     let plainBooks = books.map(book =>
       ({
-        guid: book.guid,
+        guid: book._id,
         title: book.title,
         author: book.author
       }));
     res.status(200).json({
-      plainBooks: plainBooks,
+      plainBooks,
     });
   });
 });

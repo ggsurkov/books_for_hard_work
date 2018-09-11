@@ -14,7 +14,7 @@
       ></app-update-form-book>
     </mat-tab>
   </mat-tab-group>
-  <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="plainBooks$ | async">
     <ng-container cdkColumnDef="title">
       <mat-header-cell *cdkHeaderCellDef class="title-cell">Название</mat-header-cell>
       <mat-cell *cdkCellDef="let book" class="title-cell" > {{book.title}} </mat-cell>

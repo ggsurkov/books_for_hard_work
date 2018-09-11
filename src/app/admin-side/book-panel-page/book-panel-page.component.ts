@@ -11,10 +11,11 @@ import {BookPanelPageService} from "./book-panel-page.service";
   templateUrl: './book-panel-page.component.html',
   styleUrls: ['./book-panel-page.component.css']
 })
-export class BookPanelPageComponent implements OnInit{
+export class BookPanelPageComponent implements OnInit {
   @Select(state => state.adminPanelPage.selectedEditedBook)
   selectedEditedBook$: Observable<BookModel>;
-
+  @Select(state => state.adminPanelPage.plainBooks)
+  plainBooks$: Observable<BookModel>;
   dataSource: any = [
     {guid: "g-1", title: "Моя жизнь. Мои достижения1", author: "Генри Форд"},
     {guid: "g-2", title: "Моя жизнь. Мои достижения2", author: "Генри Форд"},
@@ -34,16 +35,14 @@ export class BookPanelPageComponent implements OnInit{
   }
 
   selectBookForEdit(book: BookModel): void {
-    this.store.dispatch(new SelectBook(book))
+    this.store.dispatch(new SelectBook(book));
   }
 
   updateBook(book: BookModel) {
-    this.store.dispatch(new UpdateBook(book))
+    this.store.dispatch(new UpdateBook(book));
   }
 
   saveNewBook(book: BookModel) {
-    this.store.dispatch(new SaveNewBook(book)).subscribe(() => {
-      this.store.dispatch(new GetAllPlainBooks);
-    });
+    this.store.dispatch(new SaveNewBook(book));
   }
 }

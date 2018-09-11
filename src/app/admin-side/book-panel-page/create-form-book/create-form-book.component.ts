@@ -25,7 +25,7 @@ export class CreateFormBookComponent implements OnInit, OnDestroy {
     this.saveNewBook.unsubscribe();
   }
   saveBook(form: NgForm) {
-    if(form.invalid) {
+    if (form.invalid) {
       return;
     } else {
       const newBook = this.objectService.mergeObjects(this.newBook, form.value);
