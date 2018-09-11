@@ -1,10 +1,14 @@
-import {Component, EventEmitter, OnInit, Output, OnDestroy} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, OnDestroy, ViewChild} from '@angular/core';
 import {BookModel} from "../../models/book.model";
 import {Select, Store} from "@ngxs/store";
 import {DeleteBook, GetAllPlainBooks, SaveNewBook, SelectBook, UpdateBook} from '../action/book.action';
 import {Observable} from "rxjs/index";
 import {HttpClient} from "@angular/common/http";
 import {BookPanelPageService} from "./book-panel-page.service";
+import {MatTab, MatTabGroup} from "@angular/material";
+import {store} from "@angular/core/src/render3/instructions";
+import {AdminPanelState} from "../state/admin-panel.state";
+import {PlainBookModel} from "../../models/plain-book.model";
 
 @Component({
   selector: 'app-book-panel-page',
@@ -16,16 +20,12 @@ export class BookPanelPageComponent implements OnInit {
   selectedEditedBook$: Observable<BookModel>;
   @Select(state => state.adminPanelPage.plainBooks)
   plainBooks$: Observable<BookModel>;
-  dataSource: any = [
-    {guid: "g-1", title: "Моя жизнь. Мои достижения1", author: "Генри Форд"},
-    {guid: "g-2", title: "Моя жизнь. Мои достижения2", author: "Генри Форд"},
-    {guid: "g-3", title: "Моя жизнь. Мои достижения3", author: "Генри Форд"},
-    {guid: "g-4", title: "Моя жизнь. Мои достижения4", author: "Генри Форд"},
-    {guid: "g-5", title: "Моя жизнь. Мои достижения5", author: "Генри Форд"},
-    {guid: "g-6", title: "Моя жизнь. Мои достижения6", author: "Генри Форд"},
-    {guid: "g-7", title: "Моя жизнь. Мои достижения7", author: "Генри Форд"},
-    {guid: "g-8", title: "Моя жизнь. Мои достижения8", author: "Генри Форд"}
-  ];
+
+  selectedBookGuid: string = '';
+  firstTabNewBook: number = 0;
+  secondTabEditBook: number = 1;
+
+  @ViewChild('matTabGroup') matTabGroup: MatTabGroup;
 
   constructor(private store: Store, private bookPanelPageService: BookPanelPageService) {
 
@@ -35,11 +35,16 @@ export class BookPanelPageComponent implements OnInit {
   }
 
   selectBookForEdit(book: BookModel): void {
-    this.store.dispatch(new SelectBook(book));
+    this.store.dispatch(new SelectBook(book)).subscribe(() => {
+      this.selectedBookGuid = this.store.selectSnapshot((state => state.adminPanelPage.selectedEditedBook.guid));
+    });
+    this.matTabGroup.selectedIndex = this.secondTabEditBook;
+
   }
 
   updateBook(book: BookModel) {
     this.store.dispatch(new UpdateBook(book));
+    this.matTabGroup.selectedIndex = this.firstTabNewBook;
   }
 
   saveNewBook(book: BookModel) {
@@ -47,5 +52,6 @@ export class BookPanelPageComponent implements OnInit {
   }
   deleteBook(guid: string) {
     this.store.dispatch(new DeleteBook(guid));
+    this.matTabGroup.selectedIndex = this.firstTabNewBook;
   }
 }

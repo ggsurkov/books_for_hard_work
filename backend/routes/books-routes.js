@@ -34,7 +34,6 @@ const storage = multer.diskStorage({
 router.post("/new", (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
   const book = new BookModel({
-    guid: req.body.guid,
     title: req.body.title,
     author: req.body.author,
     imagePath: url + "/images/" + req.body.image,
@@ -46,17 +45,30 @@ router.post("/new", (req, res, next) => {
     refShopButtons: req.body.refShopButtons,
   });
   book.save().then(createdBook => {
-    res.status(201).json({
-      message: "Post added successfully",
-      guid: createdBook._id,
-      title: createdBook.title,
-      author: createdBook.author,
+    BookModel.find().then(books => {
+      let plainBooks = books.map(book =>
+        ({
+          guid: book._id,
+          title: book.title,
+          author: book.author
+        }));
+      res.status(200).json({
+        plainBooks,
+      });
     });
+    // res.status(201).json({
+    //   plainBook: {
+    //     guid: createdBook._id,
+    //     title: createdBook.title,
+    //     author: createdBook.author,
+    //   }
+    // });
   });
 });
 
 router.put("/:guid", (req, res, next) => {
   const book = new BookModel({
+    _id: req.body.guid,
     title: req.body.title,
     author: req.body.author,
     imagePath: req.body.img,
@@ -68,7 +80,16 @@ router.put("/:guid", (req, res, next) => {
     refShopButtons: req.body.refShopButtons,
   });
   BookModel.updateOne({_id: req.params.guid}, book).then(result => {
-    res.status(200).json({message: "Update successful!"});
+    BookModel.find().then(books => {
+      let plainBooks = books.map(book =>
+        ({
+          guid: book._id,
+          title: book.title,
+          author: book.author
+        }));
+      res.status(200).json({plainBooks})
+    });
+
   });
 });
 
@@ -89,6 +110,7 @@ router.get("/all", (req, res, next) => {
 router.get("/:guid", (req, res, next) => {
   BookModel.findById(req.params.guid).then(book => {
     if (book) {
+      book.guid = book._id;
       res.status(200).json(book);
     } else {
       res.status(404).json({message: "Book not found!"});

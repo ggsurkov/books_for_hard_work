@@ -1,7 +1,7 @@
 <h1 class="row">Добавить книгу</h1>
 
 <div class="row tab-and-table-block">
-  <mat-tab-group class="tab-and-table-block__tabs">
+  <mat-tab-group class="tab-and-table-block__tabs" #matTabGroup>
     <mat-tab class="tab-and-table-block__create" label="Новая">
       <app-create-form-book
       (saveNewBook)="saveNewBook($event)"
@@ -21,10 +21,10 @@
       <mat-cell *cdkCellDef="let book" class="title-cell" > {{book.title}} </mat-cell>
     </ng-container>
     <ng-container cdkColumnDef="author">
-      <mat-header-cell *cdkHeaderCellDef class="author-cell">Кол-во книг</mat-header-cell>
+      <mat-header-cell *cdkHeaderCellDef class="author-cell">Автор</mat-header-cell>
       <mat-cell  *cdkCellDef="let book" class="author-cell"> {{book.author}} </mat-cell>
     </ng-container>
     <mat-header-row *cdkHeaderRowDef="['title', 'author']"></mat-header-row>
-    <mat-row (click)="selectBookForEdit(book)"  *cdkRowDef="let book; columns: ['title', 'author']"></mat-row>
+    <mat-row [class.selected-bgc]="selectedBookGuid === book.guid" (click)="selectBookForEdit(book)"  *cdkRowDef="let book; columns: ['title', 'author']"></mat-row>
   </mat-table>
 </div>

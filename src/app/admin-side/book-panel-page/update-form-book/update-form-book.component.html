@@ -15,11 +15,11 @@
   </div>
   <mat-form-field>
     <input name="shortDecription" required matInput type="text" placeholder="Короткое описание"
-           [ngModel]="selectedEditedBook.shortDescription">
+           [(ngModel)]="selectedEditedBook.shortDescription">
   </mat-form-field>
   <mat-form-field>
     <textarea name="description" required matInput type="text" placeholder="Полное описание"
-              [ngModel]="selectedEditedBook.description"></textarea>
+              [(ngModel)]="selectedEditedBook.description"></textarea>
   </mat-form-field>
   <mat-form-field>
     <mat-select type="text" placeholder="Выбрать коллекцию"></mat-select>

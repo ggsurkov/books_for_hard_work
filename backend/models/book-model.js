@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // const CollectionModel = require("collection-model");
 
 const bookSchema = mongoose.Schema({
-  guid: { type: String, required: true },
+  guid: { type: String},
   title: { type: String, required: true },
   author: { type: String, required: true },
   imagePath: { type: String },

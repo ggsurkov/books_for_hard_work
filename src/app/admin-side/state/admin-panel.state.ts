@@ -6,6 +6,8 @@ import {CollectionModel} from '../../models/collection.model';
 import {ClearBookPageState, DeleteBook, GetAllPlainBooks, SaveNewBook, SelectBook, UpdateBook} from '../action/book.action';
 import {ClearCollectionPageState, GetAllPlainCollections, SelectCollection, UpdateCollection} from '../action/collection.action';
 import {BookPanelPageService} from '../book-panel-page/book-panel-page.service';
+import {tap} from "rxjs/internal/operators";
+import {Observable} from "rxjs/index";
 
 export interface AdminPanelStateModel {
   plainBooks: PlainBookModel[];
@@ -41,42 +43,31 @@ export class AdminPanelState {
   }
 
   @Action(SelectBook)
-  selectBook({patchState}: StateContext<AdminPanelStateModel>, {payload}: SelectBook): void {
-    patchState({selectedEditedBook: payload});
+  selectBook({patchState}: StateContext<AdminPanelStateModel>, {payload}: SelectBook): Observable<BookModel> {
+    return this.bookPanelPageService.getBookByGuid(payload.guid).pipe(tap((selectedBook) => {
+      patchState({selectedEditedBook: selectedBook});
+    }));
   }
 
   @Action(UpdateBook)
   updateBook({patchState, getState}: StateContext<AdminPanelStateModel>, {payload}: SelectBook): void {
     let plainBooks: PlainBookModel[] = getState().plainBooks;
-    this.bookPanelPageService.updateBook(payload).subscribe(() => {
-      plainBooks.forEach((plainBook: PlainBookModel) => {
-        if (plainBook.guid === payload.guid) {
-          plainBook.title = payload.title;
-          plainBook.author = payload.author;
-          patchState({plainBooks: plainBooks});
-        }
-      });
+    this.bookPanelPageService.updateBook(payload).subscribe((books: {plainBooks: PlainBookModel[]}) => {
+      patchState({plainBooks: books.plainBooks, selectedEditedBook: null})
     });
   }
 
   @Action(SaveNewBook)
   saveNewBook({patchState, getState}: StateContext<AdminPanelStateModel>, {payload}: SaveNewBook): void {
-    const adminPanelStateModel: AdminPanelStateModel = getState();
-    this.bookPanelPageService.saveNewBook(payload).subscribe((result) => {
-      let newPlainBook: PlainBookModel = {guid: '', author: '', title: ''};
-      newPlainBook.author = result.author;
-      newPlainBook.title = result.title;
-      newPlainBook.guid = result.guid;
-
-      adminPanelStateModel.plainBooks.push(newPlainBook);
-      patchState({plainBooks: adminPanelStateModel.plainBooks});
+    this.bookPanelPageService.saveNewBook(payload).subscribe((result: {plainBooks: PlainBookModel[]}) => {
+      patchState({plainBooks: result.plainBooks})
     });
   }
 
   @Action(DeleteBook)
   deleteBook({patchState, getState}: StateContext<AdminPanelStateModel>, {payload}: DeleteBook): void {
     this.bookPanelPageService.deleteBook(payload).subscribe((books: {plainBooks: PlainBookModel[]}) => {
-      patchState({plainBooks: books.plainBooks});
+      patchState({plainBooks: books.plainBooks, selectedEditedBook: null});
     });
   }
 
