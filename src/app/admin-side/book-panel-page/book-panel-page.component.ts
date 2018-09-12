@@ -30,6 +30,7 @@ export class BookPanelPageComponent implements OnInit {
   constructor(private store: Store, private bookPanelPageService: BookPanelPageService) {
 
   }
+
   ngOnInit() {
     this.store.dispatch(new GetAllPlainBooks);
   }
@@ -50,6 +51,7 @@ export class BookPanelPageComponent implements OnInit {
   saveNewBook(book: BookModel) {
     this.store.dispatch(new SaveNewBook(book));
   }
+
   deleteBook(guid: string) {
     this.store.dispatch(new DeleteBook(guid));
     this.matTabGroup.selectedIndex = this.firstTabNewBook;

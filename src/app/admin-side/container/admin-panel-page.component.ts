@@ -23,7 +23,7 @@ export class AdminPanelPageComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-
+    
   }
   openBookPanelPage() {
     this.router.navigate([`admin-panel/book-panel`])

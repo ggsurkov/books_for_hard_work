@@ -14,7 +14,7 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  openCollection(collectionId: Number) {
-    this.router.navigate([`book-collection/${collectionId}`])
+  openCollection(collectionTitle: string) {
+    this.router.navigate([`book-collection/${collectionTitle}`])
   }
 }

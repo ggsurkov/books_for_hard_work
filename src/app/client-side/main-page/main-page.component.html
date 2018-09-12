@@ -11,11 +11,11 @@
 
 <div class="collection-block row space-between">
   <mat-card class="collection-block__card" *ngFor="let collection of collections">
-    <div (click)="openCollection(collection.id)">
+    <div (click)="openCollection(collection.title)">
     <mat-card-header>
       <mat-card-title>{{collection.title}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image [src]="collection.img">
+    <img mat-card-image [src]="collection.image">
     <mat-card-content>
       <p>
         {{collection.description}}

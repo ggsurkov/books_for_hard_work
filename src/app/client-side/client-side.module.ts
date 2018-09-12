@@ -3,13 +3,15 @@ import {NgxsModule} from "@ngxs/store";
 
 @NgModule({
   declarations: [
+
   ],
   imports: [
     NgxsModule.forFeature([
     ]),
   ],
   providers: [],
-  entryComponents: []
+  entryComponents: [
+  ]
 })
 
 export class ClientSideModule {
