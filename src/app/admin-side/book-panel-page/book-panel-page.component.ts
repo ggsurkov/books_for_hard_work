@@ -19,9 +19,9 @@ export class BookPanelPageComponent implements OnInit {
   @Select(state => state.adminPanelPage.selectedEditedBook)
   selectedEditedBook$: Observable<BookModel>;
   @Select(state => state.adminPanelPage.plainBooks)
-  plainBooks$: Observable<BookModel>;
+  plainBooks$: Observable<PlainBookModel[]>;
 
-  selectedBookGuid: string = '';
+  selectedBookGuid: String = '';
   firstTabNewBook: number = 0;
   secondTabEditBook: number = 1;
 

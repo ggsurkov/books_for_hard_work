@@ -1,4 +1,4 @@
-<form  (submit)="saveCollection()" #menuForm="ngForm" autocomplete="off">
+<form  (submit)="saveCollection(createForm)" #createForm="ngForm" autocomplete="off">
   <mat-form-field>
     <input name="title" required matInput type="text" placeholder="Название" [(ngModel)]="newCollection.title">
   </mat-form-field>

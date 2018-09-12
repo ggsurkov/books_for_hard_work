@@ -1,4 +1,4 @@
-<form  (submit)="updateSelectedCollection()" #menuForm="ngForm" autocomplete="off" *ngIf="selectedEditedCollection">
+<form  (submit)="updateSelectedCollection()" #updateForm="ngForm" autocomplete="off" *ngIf="selectedEditedCollection">
   <mat-form-field>
     <input name="title" required matInput type="text" placeholder="Название" [(ngModel)]="selectedEditedCollection.title">
   </mat-form-field>
@@ -20,7 +20,7 @@
 
   <div class="action-buttons">
     <button mat-raised-button color="primary" type="submit">Обновить</button>
-    <button mat-raised-button color="danger" type="button" (click)="deleteCollection()">Удалить</button>
+    <button mat-raised-button color="danger" type="button" (click)="deleteSelectedBook()">Удалить</button>
   </div>
 </form>
 

@@ -35,29 +35,45 @@ router.post("/new", (req, res, next) => {
   const url = req.protocol + "://" + req.get("host");
   const collection = new CollectionModel({
     title: req.body.title,
+    description: req.body.description,
     vote: req.body.vote,
     imagePath: url + "/images/" + req.body.image,
     books: req.body.books,
   });
   collection.save().then(createdCollection => {
-    res.status(201).json({
-      message: "Collection added successfully",
-      guid: createdCollection._id,
-      title: createdCollection.title,
-      booksCount: createdCollection.books.length,
+    CollectionModel.find().then(collections => {
+      let plainCollections = collections.map(collection =>
+        ({
+          guid: collection._id,
+          title: collection.title,
+          author: collection.author
+        }));
+      res.status(200).json({
+        plainCollections,
+      });
     });
   });
 });
 
 router.put("/:guid", (req, res, next) => {
   const collection = new CollectionModel({
+    _id: req.body.guid,
     title: req.body.title,
+    description: req.body.description,
     vote: req.body.vote,
-    imagePath: url + "/images/" + req.body.image,
+    imagePath: req.body.imagePath,
     books: req.body.books,
   });
   CollectionModel.updateOne({_id: req.params.guid}, collection).then(result => {
-    res.status(200).json({message: "Update successful!"});
+    CollectionModel.find().then(collections => {
+      let plainCollections = collections.map(collection =>
+        ({
+          guid: collection._id,
+          title: collection.title,
+          author: collection.author
+        }));
+      res.status(200).json({plainCollections})
+    });
   });
 });
 
@@ -78,6 +94,7 @@ router.get("/all", (req, res, next) => {
 router.get("/:guid", (req, res, next) => {
   CollectionModel.findById(req.params.guid).then(collection => {
     if (collection) {
+      collection.guid = collection._id;
       res.status(200).json(collection);
     } else {
       res.status(404).json({message: "Collection not found!"});
@@ -88,15 +105,15 @@ router.get("/:guid", (req, res, next) => {
 router.delete("/delete/:guid", (req, res, next) => {
   CollectionModel.deleteOne({_id: req.params.guid}).then(result => {
     CollectionModel.find().then(collections => {
-      let plainBooks = collections.map(collection =>
+      let plainCollections = collections.map(collection =>
         ({
           guid: collection._id,
           title: collection.title,
           author: collection.author
         }));
       res.status(200).json({
-        message: "Book deleted!",
-        plainBooks,
+        message: "Collection deleted!",
+        plainCollections,
       });
     });
   });

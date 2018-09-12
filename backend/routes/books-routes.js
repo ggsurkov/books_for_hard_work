@@ -56,13 +56,6 @@ router.post("/new", (req, res, next) => {
         plainBooks,
       });
     });
-    // res.status(201).json({
-    //   plainBook: {
-    //     guid: createdBook._id,
-    //     title: createdBook.title,
-    //     author: createdBook.author,
-    //   }
-    // });
   });
 });
 

@@ -4,10 +4,17 @@ import {PlainCollectionModel} from '../../models/plain-collection.model';
 import {BookModel} from '../../models/book.model';
 import {CollectionModel} from '../../models/collection.model';
 import {ClearBookPageState, DeleteBook, GetAllPlainBooks, SaveNewBook, SelectBook, UpdateBook} from '../action/book.action';
-import {ClearCollectionPageState, GetAllPlainCollections, SelectCollection, UpdateCollection} from '../action/collection.action';
+import {
+  ClearCollectionPageState, DeleteCollection,
+  GetAllPlainCollections,
+  SaveNewCollection,
+  SelectCollection,
+  UpdateCollection
+} from '../action/collection.action';
 import {BookPanelPageService} from '../book-panel-page/book-panel-page.service';
-import {tap} from "rxjs/internal/operators";
-import {Observable} from "rxjs/index";
+import {tap} from 'rxjs/internal/operators';
+import {Observable} from 'rxjs/index';
+import {CollectionPanelPageService} from '../collection-panel-page/collection-panel-page.service';
 
 export interface AdminPanelStateModel {
   plainBooks: PlainBookModel[];
@@ -27,7 +34,7 @@ export interface AdminPanelStateModel {
 })
 export class AdminPanelState {
 
-  constructor(private bookPanelPageService: BookPanelPageService) {
+  constructor(private bookPanelPageService: BookPanelPageService, private collectionPanelPageService: CollectionPanelPageService) {
   }
 
   @Action(ClearBookPageState)
@@ -51,16 +58,15 @@ export class AdminPanelState {
 
   @Action(UpdateBook)
   updateBook({patchState, getState}: StateContext<AdminPanelStateModel>, {payload}: SelectBook): void {
-    let plainBooks: PlainBookModel[] = getState().plainBooks;
     this.bookPanelPageService.updateBook(payload).subscribe((books: {plainBooks: PlainBookModel[]}) => {
-      patchState({plainBooks: books.plainBooks, selectedEditedBook: null})
+      patchState({plainBooks: books.plainBooks, selectedEditedBook: null});
     });
   }
 
   @Action(SaveNewBook)
   saveNewBook({patchState, getState}: StateContext<AdminPanelStateModel>, {payload}: SaveNewBook): void {
     this.bookPanelPageService.saveNewBook(payload).subscribe((result: {plainBooks: PlainBookModel[]}) => {
-      patchState({plainBooks: result.plainBooks})
+      patchState({plainBooks: result.plainBooks});
     });
   }
 
@@ -76,25 +82,38 @@ export class AdminPanelState {
     setState(null);
   }
 
+  @Action(SaveNewCollection)
+  saveNewCollection({patchState, getState}: StateContext<AdminPanelStateModel>, {payload}: SaveNewCollection): void {
+    this.collectionPanelPageService.saveNewCollection(payload).subscribe((result: {plainCollections: PlainCollectionModel[]}) => {
+      patchState({plainCollections: result.plainCollections});
+    });
+  }
+
+  @Action(DeleteCollection)
+  deleteCollection({patchState, getState}: StateContext<AdminPanelStateModel>, {payload}: DeleteCollection): void {
+    this.collectionPanelPageService.deleteCollection(payload).subscribe((collections: {plainCollections: PlainCollectionModel[]}) => {
+      patchState({plainCollections: collections.plainCollections, selectedEditedCollection: null});
+    });
+  }
+
   @Action(GetAllPlainCollections)
   getAllPlainCollections({patchState}: StateContext<AdminPanelStateModel>): void {
-    // TODO write get request for downloading all Collections from DB
+    this.collectionPanelPageService.getAllCollections().subscribe((collections: { plainCollections: PlainCollectionModel[] }) => {
+      patchState({plainCollections: collections.plainCollections});
+    });
   }
 
   @Action(SelectCollection)
-  selectCollection({patchState}: StateContext<AdminPanelStateModel>, {payload}: SelectCollection): void {
-    patchState({selectedEditedCollection: payload});
+  selectCollection({patchState}: StateContext<AdminPanelStateModel>, {payload}: SelectCollection): Observable<CollectionModel> {
+    return this.collectionPanelPageService.getCollectionByGuid(payload).pipe(tap((selectedCollection) => {
+      patchState({selectedEditedCollection: selectedCollection});
+    }));
   }
 
   @Action(UpdateCollection)
   updateCollection({patchState, getState}: StateContext<AdminPanelStateModel>, {payload}: UpdateCollection): void {
-    let plainCollections: PlainCollectionModel[] = getState().plainCollections;
-    plainCollections.forEach((plainCollection: PlainCollectionModel) => {
-      if (plainCollection.guid === payload.guid) {
-        plainCollection.title = payload.title;
-        // TODO write a post request for save updated Collection to DB
-      }
+    this.collectionPanelPageService.updateCollection(payload).subscribe((collections: {plainCollections: PlainCollectionModel[]}) => {
+      patchState({plainCollections: collections.plainCollections, selectedEditedCollection: null});
     });
-    patchState({plainCollections: plainCollections});
   }
 }
