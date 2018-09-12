@@ -27,6 +27,7 @@ import {AppRoutingModule} from "./app.routing";
 import {AdminPanelModule} from "./admin-side/admin-panel.module";
 import {NgxsModule} from "@ngxs/store";
 import {ObjectService} from "../core/helpers/object.service";
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import {ObjectService} from "../core/helpers/object.service";
     UpdateCollectionFormComponent,
     AuthorPageComponent,
     MenuHeaderComponent,
+    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
