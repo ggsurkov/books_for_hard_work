@@ -21,4 +21,5 @@ export class BookCollectionPageComponent implements OnInit {
   openBook(bookId: string) {
     this.router.navigate([`book/${bookId}`])
   }
+
 }

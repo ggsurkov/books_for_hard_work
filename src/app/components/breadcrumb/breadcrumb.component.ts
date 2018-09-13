@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {Router, ActivatedRoute, NavigationEnd, Params, PRIMARY_OUTLET, ActivationEnd} from "@angular/router";
 import {filter} from "rxjs/internal/operators";
 
@@ -13,93 +13,14 @@ interface IBreadcrumb {
   templateUrl: './breadcrumb.component.html',
   styleUrls: ['./breadcrumb.component.css']
 })
-export class BreadcrumbComponent implements OnInit {
-
-  public breadcrumbs: IBreadcrumb[];
+export class BreadcrumbComponent {
+  @Input() currentUrlLabel: string;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {
-    this.breadcrumbs = [];
+              private router: Router) {
   }
-// TODO Rework breadcrumb component. Need new logic with transliterate words in url path from cyrilic to latin
-  ngOnInit() {
-    const ROUTE_DATA_BREADCRUMB: string = "breadcrumb";
-
-    //subscribe to the NavigationEnd event
-    this.router.events.pipe(filter(event => event instanceof ActivationEnd)).subscribe(event => {
-      console.log(event);
-      let param = event['params'];
-      if(event['snapshot'].url.length === 0) {
-        return
-      } else {
-        event['snapshot'].url.forEach((urlSegment) => {
-          this.breadcrumbs.push(this.getBreadcrumbsChild(urlSegment.path, param))
-        })
-      }
-
-      //set breadcrumbs
-      // let root: ActivatedRoute = this.activatedRoute.root;
-      // this.breadcrumbs = this.getBreadcrumbs(root);
-    });
-    // this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
-    //
-    //   //set breadcrumbs
-    //   let root: ActivatedRoute = this.activatedRoute.root;
-    //   this.breadcrumbs = this.getBreadcrumbs(root);
-    // });
+  goHome() {
+    this.router.navigate(['/'])
   }
-
-  private getBreadcrumbsChild(path: string, param): IBreadcrumb {
-    let child: IBreadcrumb;
-
-    return child;
-  }
-
-  private getBreadcrumbs(route: ActivatedRoute, url: string="", breadcrumbs: IBreadcrumb[]=[]): IBreadcrumb[] {
-    const ROUTE_DATA_BREADCRUMB: string = "breadcrumb";
-
-    //get the child routes
-    let children: ActivatedRoute[] = route.children;
-
-    //return if there are no more children
-    if (children.length === 0) {
-      return breadcrumbs;
-    }
-
-    //iterate over each children
-    for (let child of children) {
-      //verify primary route
-      if (child.outlet !== PRIMARY_OUTLET) {
-        continue;
-      }
-
-      //verify the custom data property "breadcrumb" is specified on the route
-      if (!child.snapshot.data.hasOwnProperty(ROUTE_DATA_BREADCRUMB)) {
-        return this.getBreadcrumbs(child, url, breadcrumbs);
-      }
-
-      //get the route's URL segment
-      let routeURL: string = child.snapshot.url.map(segment => segment.path).join("/");
-
-      //append route URL to URL
-      url += `/${routeURL}`;
-
-      //add breadcrumb
-      let breadcrumb: IBreadcrumb = {
-        label: child.snapshot.data[ROUTE_DATA_BREADCRUMB],
-        params: child.snapshot.params,
-        url: url
-      };
-      breadcrumbs.push(breadcrumb);
-
-      //recursive
-      return this.getBreadcrumbs(child, url, breadcrumbs);
-    }
-
-    //we should never get here, but just in case
-    return breadcrumbs;
-  }
-
 }
+

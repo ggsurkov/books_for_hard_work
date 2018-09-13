@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Subscription} from "rxjs/index";
 
 @Component({
   selector: 'app-root',
@@ -7,12 +8,9 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-
   constructor(public http: HttpClient) {
-
   }
-  ngOnInit() {
 
+  ngOnInit() {
   }
 }

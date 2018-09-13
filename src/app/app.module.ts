@@ -1,24 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MaterialDesignModule} from '../core/material-design.module';
-import { BookPageComponent } from './client-side/book-page/book-page.component';
-import { MainPageComponent } from './client-side/main-page/main-page.component';
-import { BookCollectionPageComponent } from './client-side/book-collection-page/book-collection-page.component';
+import {BookPageComponent} from './client-side/book-page/book-page.component';
+import {MainPageComponent} from './client-side/main-page/main-page.component';
+import {BookCollectionPageComponent} from './client-side/book-collection-page/book-collection-page.component';
 import {IconSvgRegistryService} from "../core/helpers/icon.service";
-import { AdminPanelPageComponent } from './admin-side/container/admin-panel-page.component';
+import {AdminPanelPageComponent} from './admin-side/container/admin-panel-page.component';
 import {BookPanelPageComponent} from "./admin-side/book-panel-page/book-panel-page.component";
 import {CollectionPanelPageComponent} from "./admin-side/collection-panel-page/collection-panel-page.component";
-import { CreateFormBookComponent } from './admin-side/book-panel-page/create-form-book/create-form-book.component';
+import {CreateFormBookComponent} from './admin-side/book-panel-page/create-form-book/create-form-book.component';
 import {CdkColumnDef} from "@angular/cdk/table";
-import { UpdateFormBookComponent } from './admin-side/book-panel-page/update-form-book/update-form-book.component';
-import { CreateCollectionFormComponent } from './admin-side/collection-panel-page/create-collection-form/create-collection-form.component';
-import { UpdateCollectionFormComponent } from './admin-side/collection-panel-page/update-collection-form/update-collection-form.component';
-import { AuthorPageComponent } from './client-side/author-page/author-page.component';
-import { MenuHeaderComponent } from './components/menu-header/menu-header.component';
+import {UpdateFormBookComponent} from './admin-side/book-panel-page/update-form-book/update-form-book.component';
+import {CreateCollectionFormComponent} from './admin-side/collection-panel-page/create-collection-form/create-collection-form.component';
+import {UpdateCollectionFormComponent} from './admin-side/collection-panel-page/update-collection-form/update-collection-form.component';
+import {AuthorPageComponent} from './client-side/author-page/author-page.component';
+import {MenuHeaderComponent} from './components/menu-header/menu-header.component';
 import {NgxsStoragePluginModule, StorageOption} from '@ngxs/storage-plugin';
 import {environment} from "../environments/environment.prod";
 import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
@@ -27,25 +27,14 @@ import {AppRoutingModule} from "./app.routing";
 import {AdminPanelModule} from "./admin-side/admin-panel.module";
 import {NgxsModule} from "@ngxs/store";
 import {ObjectService} from "../core/helpers/object.service";
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
+import {ClientSideModule} from "./client-side/client-side.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookPageComponent,
-    MainPageComponent,
-    BookCollectionPageComponent,
-    AdminPanelPageComponent,
-    BookPanelPageComponent,
-    CollectionPanelPageComponent,
-    CreateFormBookComponent,
-    UpdateFormBookComponent,
-    CreateCollectionFormComponent,
-    UpdateCollectionFormComponent,
-    AuthorPageComponent,
     MenuHeaderComponent,
-    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,8 +45,8 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     HttpClientModule,
     AppRoutingModule,
     AdminPanelModule,
-    NgxsModule.forRoot([
-    ]),
+    ClientSideModule,
+    NgxsModule.forRoot([]),
     NgxsStoragePluginModule.forRoot({
       storage: StorageOption.SessionStorage
     }),

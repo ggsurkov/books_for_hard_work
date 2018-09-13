@@ -1,13 +1,15 @@
 <h1 class="row">
     {{collection.title}}
 </h1>
+<breadcrumb [currentUrlLabel]="collection.title"></breadcrumb>
+
 <div class="books-block row space-between">
   <mat-card class="books-block__card" *ngFor="let book of collection.books">
     <div (click)="openBook(book.guid)">
       <mat-card-header>
         <mat-card-title>{{book.title}}</mat-card-title>
       </mat-card-header>
-      <img mat-card-image [src]="book.img">
+      <img mat-card-image [src]="book.image">
       <mat-card-content>
         <p>
           {{book.shortDescription}}

@@ -12,9 +12,9 @@ import {AdminPanelModule} from "./admin-side/admin-panel.module";
 
 const routes: Routes = [
   {path: '', component: MainPageComponent, pathMatch: 'full'},
-  // {path: 'admin-panel', component: AdminPanelPageComponent, pathMatch: 'full', data: {breadcrumb: 'admin-panel'}},
-  // {path: 'admin-panel/book-panel', component: BookPanelPageComponent, data: {breadcrumb: 'book-panel'}},
-  // {path: 'admin-panel/collection-panel', component: CollectionPanelPageComponent, data: {breadcrumb: 'collection-panel'}},
+  {path: 'admin-panel', component: AdminPanelPageComponent, pathMatch: 'full', data: {breadcrumb: 'admin-panel'}},
+  {path: 'admin-panel/book-panel', component: BookPanelPageComponent, data: {breadcrumb: 'book-panel'}},
+  {path: 'admin-panel/collection-panel', component: CollectionPanelPageComponent, data: {breadcrumb: 'collection-panel'}},
   {path: 'book/:title', component: BookPageComponent, data: {breadcrumb: 'book/:id'}},
   {path: 'book-collection/:title', component: BookCollectionPageComponent, data: {breadcrumb: 'book-collection/:id'}},
   {path: 'author/:title', component: AuthorPageComponent, data: {breadcrumb: 'author/:id'}}
