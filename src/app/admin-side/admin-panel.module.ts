@@ -13,6 +13,7 @@ import {UpdateFormBookComponent} from "./book-panel-page/update-form-book/update
 import {UpdateCollectionFormComponent} from "./collection-panel-page/update-collection-form/update-collection-form.component";
 import {CreateCollectionFormComponent} from "./collection-panel-page/create-collection-form/create-collection-form.component";
 import {MaterialDesignModule} from "../../core/material-design.module";
+import {SharedModule} from "../../core/shared.module";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {MaterialDesignModule} from "../../core/material-design.module";
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     MaterialDesignModule,
     NgxsModule.forFeature([
       AdminPanelState

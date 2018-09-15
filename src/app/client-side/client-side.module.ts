@@ -8,6 +8,7 @@ import {MaterialDesignModule} from "../../core/material-design.module";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {BreadcrumbComponent} from "../components/breadcrumb/breadcrumb.component";
+import {SharedModule} from "../../core/shared.module";
 
 @NgModule({
   declarations: [
@@ -15,11 +16,11 @@ import {BreadcrumbComponent} from "../components/breadcrumb/breadcrumb.component
     MainPageComponent,
     BookCollectionPageComponent,
     AuthorPageComponent,
-    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     MaterialDesignModule,
     NgxsModule.forFeature([
     ]),

@@ -29,6 +29,7 @@ import {NgxsModule} from "@ngxs/store";
 import {ObjectService} from "../core/helpers/object.service";
 import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
 import {ClientSideModule} from "./client-side/client-side.module";
+import {SharedModule} from "../core/shared.module";
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import {ClientSideModule} from "./client-side/client-side.module";
   imports: [
     BrowserModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule,
     MaterialDesignModule,
     BrowserAnimationsModule,

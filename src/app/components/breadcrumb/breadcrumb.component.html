@@ -1,3 +1,9 @@
 <p class="breadcrumbs">
-  <a (click)="goHome()">Главная</a> / {{currentUrlLabel}}
+  <span *ngIf="adminPanelMainPage === 'admin-panel'; else clientSideBreadcrumbs">
+    <a  (click)="goHome()">Админ Панель</a> / {{currentUrlLabel}}
+  </span>
+
+  <ng-template #clientSideBreadcrumbs>
+    <a (click)="goHome()">Главная</a> / {{currentUrlLabel}}
+  </ng-template>
 </p>

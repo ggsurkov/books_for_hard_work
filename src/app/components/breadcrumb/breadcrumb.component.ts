@@ -1,12 +1,5 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {Router, ActivatedRoute, NavigationEnd, Params, PRIMARY_OUTLET, ActivationEnd} from "@angular/router";
-import {filter} from "rxjs/internal/operators";
-
-interface IBreadcrumb {
-  label: string;
-  params?: Params;
-  url: string;
-}
+import {Component, Input} from "@angular/core";
+import {Router, Params} from "@angular/router";
 
 @Component({
   selector: "breadcrumb",
@@ -15,12 +8,18 @@ interface IBreadcrumb {
 })
 export class BreadcrumbComponent {
   @Input() currentUrlLabel: string;
+  @Input() adminPanelMainPage: string;
 
-  constructor(
-              private router: Router) {
+  constructor(private router: Router) {
+
   }
+
   goHome() {
-    this.router.navigate(['/'])
+    if (!this.adminPanelMainPage) {
+      this.router.navigate(['/'])
+    } else {
+      this.router.navigate([this.adminPanelMainPage])
+    }
   }
 }
 

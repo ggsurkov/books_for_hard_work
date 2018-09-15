@@ -29,3 +29,6 @@ mat-row:hover {
 .selected-bgc {
   background-color: #ffffff;
 }
+breadcrumb {
+  width: 80%
+}
