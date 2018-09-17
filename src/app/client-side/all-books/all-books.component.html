@@ -1,3 +1,7 @@
-<p>
-  all-books works!
-</p>
+<h1>
+  Все книги
+</h1>
+<breadcrumb [currentUrlLabel]="'Все книги'"></breadcrumb>
+
+<app-book-card class="books-block row space-between" [books]="allBooks">
+</app-book-card>

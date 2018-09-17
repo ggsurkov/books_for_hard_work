@@ -7,17 +7,18 @@ import {BookCollectionPageComponent} from "./client-side/book-collection-page/bo
 import {AdminPanelPageComponent} from "./admin-side/container/admin-panel-page.component";
 import {BookPanelPageComponent} from "./admin-side/book-panel-page/book-panel-page.component";
 import {CollectionPanelPageComponent} from "./admin-side/collection-panel-page/collection-panel-page.component";
-import {AuthorPageComponent} from "./client-side/author-page/author-page.component";
 import {AdminPanelModule} from "./admin-side/admin-panel.module";
+import {AllBooksComponent} from "./client-side/all-books/all-books.component";
 
 const routes: Routes = [
   {path: '', component: MainPageComponent, pathMatch: 'full'},
-  {path: 'admin-panel', component: AdminPanelPageComponent, pathMatch: 'full', data: {breadcrumb: 'admin-panel'}},
-  {path: 'admin-panel/book-panel', component: BookPanelPageComponent, data: {breadcrumb: 'book-panel'}},
-  {path: 'admin-panel/collection-panel', component: CollectionPanelPageComponent, data: {breadcrumb: 'collection-panel'}},
-  {path: 'book/:title', component: BookPageComponent, data: {breadcrumb: 'book/:id'}},
-  {path: 'book-collection/:title', component: BookCollectionPageComponent, data: {breadcrumb: 'book-collection/:id'}},
-  {path: 'author/:title', component: AuthorPageComponent, data: {breadcrumb: 'author/:id'}}
+  {path: 'admin-panel', component: AdminPanelPageComponent, pathMatch: 'full'},
+  {path: 'admin-panel/book-panel', component: BookPanelPageComponent},
+  {path: 'admin-panel/collection-panel', component: CollectionPanelPageComponent},
+  {path: 'book/:title', component: BookPageComponent},
+  {path: 'book-collection/:title', component: BookCollectionPageComponent},
+  {path: 'all-books', component: AllBooksComponent},
+  {path: 'all-collections', component: AllBooksComponent}
 ];
 
 @NgModule({

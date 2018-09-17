@@ -100,10 +100,28 @@ router.get("/all", (req, res, next) => {
   });
 });
 
+router.get("/all-full", (req, res, next) => {
+  BookModel.find().then(books => {
+    res.status(200).json({
+      books
+    });
+  });
+});
+
 router.get("/:guid", (req, res, next) => {
   BookModel.findById(req.params.guid).then(book => {
     if (book) {
       book.guid = book._id;
+      res.status(200).json(book);
+    } else {
+      res.status(404).json({message: "Book not found!"});
+    }
+  });
+});
+
+router.get("/:author", (req, res, next) => {
+  BookModel.findById(req.params.author).then(book => {
+    if (book) {
       res.status(200).json(book);
     } else {
       res.status(404).json({message: "Book not found!"});

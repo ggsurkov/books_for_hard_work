@@ -17,7 +17,6 @@ import {CdkColumnDef} from "@angular/cdk/table";
 import {UpdateFormBookComponent} from './admin-side/book-panel-page/update-form-book/update-form-book.component';
 import {CreateCollectionFormComponent} from './admin-side/collection-panel-page/create-collection-form/create-collection-form.component';
 import {UpdateCollectionFormComponent} from './admin-side/collection-panel-page/update-collection-form/update-collection-form.component';
-import {AuthorPageComponent} from './client-side/author-page/author-page.component';
 import {MenuHeaderComponent} from './components/menu-header/menu-header.component';
 import {NgxsStoragePluginModule, StorageOption} from '@ngxs/storage-plugin';
 import {environment} from "../environments/environment.prod";
@@ -30,12 +29,14 @@ import {ObjectService} from "../core/helpers/object.service";
 import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
 import {ClientSideModule} from "./client-side/client-side.module";
 import {SharedModule} from "../core/shared.module";
+import { BookCardComponent } from './components/book-card/book-card.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuHeaderComponent,
+    BookCardComponent,
   ],
   imports: [
     BrowserModule,

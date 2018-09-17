@@ -91,6 +91,14 @@ router.get("/all", (req, res, next) => {
   });
 });
 
+router.get("/all-full", (req, res, next) => {
+  CollectionModel.find().then(collections => {
+    res.status(200).json({
+      collections,
+    });
+  });
+});
+
 router.get("/:guid", (req, res, next) => {
   CollectionModel.findById(req.params.guid).then(collection => {
     if (collection) {
