@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {BreadcrumbComponent} from "../components/breadcrumb/breadcrumb.component";
 import {SharedModule} from "../../core/shared.module";
+import { AllBooksComponent } from './all-books/all-books.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {SharedModule} from "../../core/shared.module";
     MainPageComponent,
     BookCollectionPageComponent,
     AuthorPageComponent,
+    AllBooksComponent,
   ],
   imports: [
     CommonModule,

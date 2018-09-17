@@ -62,5 +62,6 @@ app.use((req, res, next) => {
 
 app.use("/api/books", bookRoutes);
 app.use("/api/collections", collectionRoutes);
+app.use("/api/authors", collectionRoutes);
 
 module.exports = app;
