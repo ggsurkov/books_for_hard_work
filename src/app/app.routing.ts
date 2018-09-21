@@ -9,6 +9,7 @@ import {BookPanelPageComponent} from "./admin-side/book-panel-page/book-panel-pa
 import {CollectionPanelPageComponent} from "./admin-side/collection-panel-page/collection-panel-page.component";
 import {AdminPanelModule} from "./admin-side/admin-panel.module";
 import {AllBooksComponent} from "./client-side/all-books/all-books.component";
+import {AllCollectionsComponent} from "./client-side/all-collections/all-collections.component";
 
 const routes: Routes = [
   {path: '', component: MainPageComponent, pathMatch: 'full'},
@@ -18,7 +19,7 @@ const routes: Routes = [
   {path: 'book/:title', component: BookPageComponent},
   {path: 'book-collection/:title', component: BookCollectionPageComponent},
   {path: 'all-books', component: AllBooksComponent},
-  {path: 'all-collections', component: AllBooksComponent}
+  {path: 'all-collections', component: AllCollectionsComponent}
 ];
 
 @NgModule({
